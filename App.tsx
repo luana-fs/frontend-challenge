@@ -1,19 +1,19 @@
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
+import DarkTheme from "./src/styles/theme/dark";
+import DefaultTheme from "./src/styles/theme/light";
 
 export default function App() {
+  const [theme, setTheme] = useState(DefaultTheme);
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <PaperProvider theme={theme}>
+        <StatusBar style="auto" />
+      </PaperProvider>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+AppRegistry.registerComponent("Front challenge", () => App);
