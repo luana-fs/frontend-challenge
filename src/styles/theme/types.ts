@@ -1,3 +1,5 @@
+import { Fonts } from "../fonts";
+
 export type Theme = {
   dark: boolean;
   mode?: "adaptive" | "exact";
@@ -15,6 +17,7 @@ export type Theme = {
     backdrop: string;
     notification: string;
   };
+  fonts: Fonts;
   animation: {
     scale: number;
   };

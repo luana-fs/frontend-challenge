@@ -1,4 +1,5 @@
 import { purple, pink, gray } from "../colors";
+import configureFonts from "../fonts";
 import type { Theme } from "./types";
 
 const DefaultTheme: Theme = {
@@ -17,6 +18,7 @@ const DefaultTheme: Theme = {
     backdrop: "#121212",
     notification: pink,
   },
+  fonts: configureFonts(),
   animation: {
     scale: 1.0,
   },

@@ -1,13 +1,13 @@
-import light from "./light";
 import { purple, pink, gray } from "../colors";
 import type { Theme } from "./types";
+import DefaultTheme from "./DefaultTheme";
 
 const DarkTheme: Theme = {
-  ...light,
+  ...DefaultTheme,
   dark: true,
   mode: "adaptive",
   colors: {
-    ...light.colors,
+    ...DefaultTheme.colors,
     primary: "#BB86FC",
     accent: "#03dac6",
     background: "#121212",
