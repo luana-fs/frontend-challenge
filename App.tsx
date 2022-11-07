@@ -9,6 +9,7 @@ import {
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import LoginPage from "./src/pages/LoginPage";
 import SignInPage from "./src/pages/SignInPage";
+import DashboardPage from "./src/pages/DashboardPage";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
@@ -18,7 +19,8 @@ export default function App() {
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
         {/* <LoginPage /> */}
-        <SignInPage/>
+        {/* <SignInPage/> */}
+        <DashboardPage />
       </PaperProvider>
     </>
   );

@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { List } from "react-native-paper";
 import { SelectProps } from "./types";
 
 export const Select = ({ title, data }: SelectProps) => {
-  const [expanded, setExpanded] = React.useState(false);
-  const [itemExpanded, setItemExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [itemExpanded, setItemExpanded] = useState(false);
 
   const handlePress = () => setExpanded(!expanded);
 
