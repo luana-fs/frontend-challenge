@@ -13,8 +13,8 @@ export const Input = ({ password, textLabel, placeholder }: InputProps) => {
     <TextInput
       secureTextEntry={isPasswordVisible ? false : password}
       mode="outlined"
-      label={password ? "Senha" : textLabel}
-      placeholder={password ? "Digite sua senha..." : placeholder}
+      label={textLabel ? textLabel : "Senha"}
+      placeholder={placeholder ? placeholder : textLabel}
       onChangeText={(text) => handleOnChange(text)}
       style={styles.inputStyles}
       right={

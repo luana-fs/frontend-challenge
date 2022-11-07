@@ -8,6 +8,7 @@ import {
 } from "react-native-paper";
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import LoginPage from "./src/pages/LoginPage";
+import SignInPage from "./src/pages/SignInPage";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
@@ -16,7 +17,8 @@ export default function App() {
     <>
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
-        <LoginPage />
+        {/* <LoginPage /> */}
+        <SignInPage/>
       </PaperProvider>
     </>
   );
