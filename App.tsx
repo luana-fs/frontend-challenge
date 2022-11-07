@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
-import { Button, Provider as PaperProvider } from "react-native-paper";
-import DarkTheme from "./src/styles/theme/DarkTheme";
+import { AppRegistry } from "react-native";
+import {
+  DarkTheme,
+  Provider as PaperProvider,
+  useTheme,
+} from "react-native-paper";
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
-import { Input } from "./src/components/LoginPage/Input";
+import LoginPage from "./src/pages/LoginPage";
 
+export const useAppTheme = () => useTheme();
 export default function App() {
-  const [theme, setTheme] = useState(DefaultTheme);
+  const [theme, setTheme] = useState(DarkTheme);
   return (
     <>
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
-        <Input textLabel="E-mail" placeholder="Digite seu email" />
-        <Input password />
+        <LoginPage />
       </PaperProvider>
     </>
   );

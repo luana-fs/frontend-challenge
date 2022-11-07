@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
+import { styles } from "./styles";
 import { InputProps } from "./types";
 
 export const Input = ({ password, textLabel, placeholder }: InputProps) => {
@@ -15,6 +16,7 @@ export const Input = ({ password, textLabel, placeholder }: InputProps) => {
       label={password ? "Senha" : textLabel}
       placeholder={password ? "Digite sua senha..." : placeholder}
       onChangeText={(text) => handleOnChange(text)}
+      style={styles.inputStyles}
       right={
         password ? (
           isPasswordVisible ? (
