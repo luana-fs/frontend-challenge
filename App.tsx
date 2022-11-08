@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { AppRegistry } from "react-native";
 import { Provider as PaperProvider, useTheme } from "react-native-paper";
+
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Routes } from "./src/routes";
+
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
-import LoginPage from "./src/pages/LoginPage";
-import SignInPage from "./src/pages/SignInPage";
-import DashboardPage from "./src/pages/DashboardPage";
 import DarkTheme from "./src/styles/theme/DarkTheme";
-import { SideMenu } from "./src/components/SideMenu";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
   const [theme, setTheme] = useState(DarkTheme);
+
   return (
     <>
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
-        {/* <LoginPage /> */}
-        {/* <SignInPage /> */}
-        {/* <DashboardPage /> */}
-        <SideMenu />
+        <Routes />
       </PaperProvider>
     </>
   );
