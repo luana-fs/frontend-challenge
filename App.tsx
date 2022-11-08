@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { AppRegistry } from "react-native";
-import {
-  DarkTheme,
-  Provider as PaperProvider,
-  useTheme,
-} from "react-native-paper";
+import { Provider as PaperProvider, useTheme } from "react-native-paper";
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import LoginPage from "./src/pages/LoginPage";
 import SignInPage from "./src/pages/SignInPage";
 import DashboardPage from "./src/pages/DashboardPage";
+import DarkTheme from "./src/styles/theme/DarkTheme";
+import { SideMenu } from "./src/components/SideMenu";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
@@ -19,8 +17,9 @@ export default function App() {
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
         {/* <LoginPage /> */}
-        {/* <SignInPage/> */}
-        <DashboardPage />
+        {/* <SignInPage /> */}
+        {/* <DashboardPage /> */}
+        <SideMenu />
       </PaperProvider>
     </>
   );
