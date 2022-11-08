@@ -11,12 +11,13 @@ import DarkTheme from "./src/styles/theme/DarkTheme";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
-  const [theme, setTheme] = useState(DarkTheme);
+  const [theme, setTheme] = useState(DefaultTheme);
+  // const isThemeDark = theme.dark;
 
   return (
     <>
       <PaperProvider theme={theme}>
-        <StatusBar style="auto" />
+        {theme.dark ? <StatusBar style="light" /> : <StatusBar style="dark" />}
         <Routes />
       </PaperProvider>
     </>

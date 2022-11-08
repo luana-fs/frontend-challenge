@@ -5,6 +5,6 @@ export const styles = (props: any) =>
     container: {
       flex: 1,
       backgroundColor: props.background,
-      padding: 15,
+      padding: 20,
     },
   });

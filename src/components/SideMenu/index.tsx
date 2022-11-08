@@ -5,6 +5,7 @@ import DashboardPage from "../../pages/DashboardPage";
 import LoginPage from "../../pages/LoginPage";
 import { Theme } from "../../styles/theme/types";
 import { CustomDrawer } from "./CustomDrawer";
+import Solicitations from "../../pages/Solicitations";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
@@ -33,7 +34,7 @@ export const SideMenu = () => {
 
         <Drawer.Screen
           name="Solicitações"
-          component={LoginPage}
+          component={Solicitations}
           options={{
             drawerIcon: () => (
               <Avatar.Icon
@@ -81,6 +82,20 @@ export const SideMenu = () => {
               <Avatar.Icon
                 size={24}
                 icon="format-list-bulleted-square"
+                style={{ backgroundColor: "transparent" }}
+                size={32}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Sair"
+          component={LoginPage}
+          options={{
+            drawerIcon: () => (
+              <Avatar.Icon
+                size={24}
+                icon="logout-variant"
                 style={{ backgroundColor: "transparent" }}
                 size={32}
               />
