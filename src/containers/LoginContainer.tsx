@@ -4,9 +4,10 @@ import LoginPage from "../pages/LoginPage";
 
 export function LoginContainer() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const { value, onChange } = useInput("");
+  const { value: email, onChange: onChangeEmail } = useInput("");
+  const { value: password, onChange: onChangePassword } = useInput("");
 
-  console.log(value);
+  console.log("9", email, password);
 
   // const props = {
   //   states: {
@@ -22,5 +23,7 @@ export function LoginContainer() {
   //   },
   // };
 
-  return <LoginPage props={{ value, onChange }} />;
+  return (
+    <LoginPage content={{ email, onChangeEmail, password, onChangePassword }} />
+  );
 }

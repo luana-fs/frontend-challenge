@@ -4,22 +4,23 @@ import { useInput } from "../../hooks/useInput";
 import { styles } from "./styles";
 import { InputProps } from "./types";
 
-export const Input = ({ password, textLabel, placeholder }: InputProps) => {
+export const Input = ({
+  password,
+  textLabel,
+  placeholder,
+  value,
+  onChange,
+}: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  // const [inputValue, setInputValue] = useState({});
-
-  const { value, onChange } = useInput("");
-  console.log("valor input com hook", value);
 
   return (
     <TextInput
+      value={value}
       secureTextEntry={isPasswordVisible ? false : password}
       mode="outlined"
       label={textLabel ? textLabel : "Senha"}
       placeholder={placeholder ? placeholder : textLabel}
-      onChange={({ nativeEvent }) => {
-        onChange(nativeEvent);
-      }}
+      onChange={({ nativeEvent }) => onChange(nativeEvent)}
       style={styles.inputStyles}
       right={
         password ? (

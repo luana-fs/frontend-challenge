@@ -7,15 +7,25 @@ import { Title } from "../../components/Title";
 import { styles } from "./styles";
 import { LoginPageProps } from "./types";
 
-export default function LoginPage(props: LoginPageProps) {
+export default function LoginPage(props: any) {
   const { colors } = useTheme();
   const style = styles(colors);
-  console.log(props);
+
+  console.log("props chegouaa", props);
   return (
     <View style={style.container}>
       <Title text={"Login"} />
-      <Input textLabel="E-mail" placeholder="Digite seu email" />
-      <Input password />
+      <Input
+        textLabel="E-mail"
+        placeholder="Digite seu email"
+        value={props.content.email}
+        onChange={props.content.onChangeEmail}
+      />
+      <Input
+        password
+        value={props.content.password}
+        onChange={props.content.onChangePassword}
+      />
       <Button buttonText="Entrar" onPress={() => console.log("clicou")} />
     </View>
   );

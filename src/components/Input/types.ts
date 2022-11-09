@@ -3,4 +3,6 @@ export type InputProps = {
   text?: boolean;
   textLabel?: string;
   placeholder?: string;
+  value: string;
+  onChange?: (arg0: {}) => void;
 };

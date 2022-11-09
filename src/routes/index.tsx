@@ -13,10 +13,10 @@ export const Routes = () => {
     <NavigationContainer
       theme={isReactPaperTheme.dark ? DarkTheme : DefaultTheme}
     >
-      {/* <LoginContainer /> */}
+      <LoginContainer />
       {/* <SignInPage /> */}
       {/* <DashboardPage /> */}
-      <SideMenu />
+      {/* <SideMenu /> */}
     </NavigationContainer>
   );
 };
