@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import { Theme } from "../styles/theme/types";
 import { useTheme as ReactPaperTheme } from "react-native-paper";
 import { DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { LoginContainer } from "../containers/LoginContainer";
 
 export const Routes = () => {
   const isReactPaperTheme: Theme = ReactPaperTheme();
@@ -12,7 +13,7 @@ export const Routes = () => {
     <NavigationContainer
       theme={isReactPaperTheme.dark ? DarkTheme : DefaultTheme}
     >
-      {/* <LoginPage /> */}
+      {/* <LoginContainer /> */}
       {/* <SignInPage /> */}
       {/* <DashboardPage /> */}
       <SideMenu />
