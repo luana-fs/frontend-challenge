@@ -11,7 +11,7 @@ import DarkTheme from "./src/styles/theme/DarkTheme";
 
 export const useAppTheme = () => useTheme();
 export default function App() {
-  const [theme, setTheme] = useState(DefaultTheme);
+  const [theme, setTheme] = useState(DarkTheme);
   // const isThemeDark = theme.dark;
 
   return (

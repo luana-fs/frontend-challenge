@@ -1,26 +1,26 @@
 import React, { useState } from "react";
+import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
 
 export function LoginContainer() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const handleOnChange = (text: string) => setInputValue(text);
+  const { value, onChange } = useInput("");
 
-  console.log(inputValue);
+  console.log(value);
 
-  const props = {
-    states: {
-      isPasswordVisible,
-      inputValue,
-    },
-    setters: {
-      setIsPasswordVisible,
-      setInputValue,
-    },
-    handlers: {
-      handleOnChange,
-    },
-  };
+  // const props = {
+  //   states: {
+  //     isPasswordVisible,
+  //     inputValue,
+  //   },
+  //   setters: {
+  //     setIsPasswordVisible,
+  //     setInputValue,
+  //   },
+  //   handlers: {
+  //     handleOnChange,
+  //   },
+  // };
 
-  return <LoginPage props={props} />;
+  return <LoginPage props={{ value, onChange }} />;
 }

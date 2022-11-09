@@ -6,9 +6,7 @@ import { InputProps } from "./types";
 
 export const Input = ({ password, textLabel, placeholder }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-
-  const handleOnChange = (text: string) => setInputValue(text);
+  // const [inputValue, setInputValue] = useState({});
 
   const { value, onChange } = useInput("");
   console.log("valor input com hook", value);
@@ -19,10 +17,9 @@ export const Input = ({ password, textLabel, placeholder }: InputProps) => {
       mode="outlined"
       label={textLabel ? textLabel : "Senha"}
       placeholder={placeholder ? placeholder : textLabel}
-      onChange={({ nativeEvent: { eventCount, target, text } }) =>
-        // console.log(eventCount, target, text)
-        onChange(text)
-      }
+      onChange={({ nativeEvent }) => {
+        onChange(nativeEvent);
+      }}
       style={styles.inputStyles}
       right={
         password ? (
