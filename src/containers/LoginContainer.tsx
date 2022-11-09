@@ -1,29 +1,30 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
 
 export function LoginContainer() {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { value: email, onChange: onChangeEmail } = useInput("");
   const { value: password, onChange: onChangePassword } = useInput("");
+  const data = { email, onChangeEmail, password, onChangePassword };
+  // console.log(data);
 
-  console.log("9", email, password);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // const props = {
-  //   states: {
-  //     isPasswordVisible,
-  //     inputValue,
-  //   },
-  //   setters: {
-  //     setIsPasswordVisible,
-  //     setInputValue,
-  //   },
-  //   handlers: {
-  //     handleOnChange,
-  //   },
-  // };
+  async function fetchData() {
+    try {
+      const res = await axios.get("users", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return console.log(res.data);
+    } catch (err) {
+      return console.log("err", err);
+    }
+  }
 
-  return (
-    <LoginPage content={{ email, onChangeEmail, password, onChangePassword }} />
-  );
+  return <LoginPage data={data} />;
 }

@@ -10,22 +10,20 @@ import { LoginPageProps } from "./types";
 export default function LoginPage(props: any) {
   const { colors } = useTheme();
   const style = styles(colors);
+  const {
+    data: { email, onChangeEmail, password, onChangePassword },
+  } = props;
 
-  console.log("props chegouaa", props);
   return (
     <View style={style.container}>
       <Title text={"Login"} />
       <Input
         textLabel="E-mail"
         placeholder="Digite seu email"
-        value={props.content.email}
-        onChange={props.content.onChangeEmail}
+        value={email}
+        onChange={onChangeEmail}
       />
-      <Input
-        password
-        value={props.content.password}
-        onChange={props.content.onChangePassword}
-      />
+      <Input password value={password} onChange={onChangePassword} />
       <Button buttonText="Entrar" onPress={() => console.log("clicou")} />
     </View>
   );

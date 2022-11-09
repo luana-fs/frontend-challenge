@@ -10,7 +10,8 @@ export const useInput = (initialValue: any) => {
 
   const handleChange = (nativeEvent: OnChangeProps) => {
     const { target, text } = nativeEvent;
-    setValue({ ...value, [target]: text });
+    setValue({ ...value, text });
+    // setValue({ ...value, [target]: text });
   };
 
   return {

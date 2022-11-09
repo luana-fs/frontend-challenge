@@ -9,6 +9,38 @@ import { Routes } from "./src/routes";
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import DarkTheme from "./src/styles/theme/DarkTheme";
 
+import { createServer } from "miragejs";
+
+if (window.server) {
+  server.shutdown();
+}
+console.log(window);
+
+window.server = createServer({
+  routes() {
+    this.get("/users", () => {
+      return {
+        data: [
+          {
+            id: "1",
+            name: "Luana Farias",
+            email: "luana@deliver.com",
+            role: "SuperAdmin",
+            password: "bananinha",
+          },
+          {
+            " id": "2",
+            name: "Lígia",
+            email: "ligia@deliver.com",
+            role: "Admin",
+            password: "pipoca",
+          },
+        ],
+      };
+    });
+  },
+});
+
 export const useAppTheme = () => useTheme();
 export default function App() {
   const [theme, setTheme] = useState(DarkTheme);

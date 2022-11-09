@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
-import { useInput } from "../../hooks/useInput";
 import { styles } from "./styles";
 import { InputProps } from "./types";
 
