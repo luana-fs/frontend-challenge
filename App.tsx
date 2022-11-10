@@ -1,61 +1,56 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import { AppRegistry } from "react-native";
-import { Provider as PaperProvider, useTheme } from "react-native-paper";
+import { Button, Provider as PaperProvider } from "react-native-paper";
 
 import { Routes } from "./src/routes";
 
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import DarkTheme from "./src/styles/theme/DarkTheme";
 
-import { createServer } from "miragejs";
 import { AllProviders } from "./src/contexts";
+import { StatusBar } from "./src/components/StatusBar/StatusBar";
+import axios from "axios";
+import { server } from "./src/server";
+import LoginPage from "./src/pages/LoginPage";
+import { DumbComponent } from "./DumbComponent";
 
-if (window.server) {
-  server.shutdown();
-}
-console.log(window);
+server();
 
-window.server = createServer({
-  routes() {
-    this.get("/users", () => {
-      return {
-        data: [
-          {
-            id: "1",
-            name: "Luana Farias",
-            email: "luana@deliver.com",
-            role: "SuperAdmin",
-            password: "bananinha",
-          },
-          {
-            " id": "2",
-            name: "Lígia",
-            email: "ligia@deliver.com",
-            role: "Admin",
-            password: "pipoca",
-          },
-        ],
-      };
-    });
-  },
-});
-
-export const useAppTheme = () => useTheme();
 export default function App() {
   const [theme, setTheme] = useState(DarkTheme);
-  // const isThemeDark = theme.dark;
+
+  const addName = async (name: string) => {
+    try {
+      const res = await axios.post("/users", {
+        id: new Date(),
+        name,
+      });
+      console.log("Axios criou", res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getUsers = async () => {
+    try {
+      const res = await axios.get("/users");
+      console.log("Axios pegou", res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
       <AllProviders>
         <PaperProvider theme={theme}>
-          {theme.dark ? (
-            <StatusBar style="light" />
-          ) : (
-            <StatusBar style="dark" />
-          )}
-          <Routes />
+          <StatusBar
+            style={theme.dark ? ("light" as string) : ("dark" as string)}
+          />
+
+          <DumbComponent onPress={addName} onPress2={getUsers} />
+          {/* <Routes /> */}
         </PaperProvider>
       </AllProviders>
     </>

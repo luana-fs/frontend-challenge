@@ -9,18 +9,6 @@ export function LoginContainer() {
   const data = { email, onChangeEmail, password, onChangePassword };
   // console.log(data);
 
-  useEffect(() => {
-    getAllUsers();
-  }, []);
-
-  const getAllUsers = async () => {
-    try {
-      const res = await api.get("users");
-      return res.data;
-    } catch (err) {
-      return console.log("err", err);
-    }
-  };
 
   return <LoginPage data={data} />;
 }
