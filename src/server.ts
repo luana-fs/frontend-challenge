@@ -7,31 +7,33 @@ export const server = () =>
       product: Model,
     },
     routes() {
-      // this.get("/users", () => {
-      //   return {
-      //     data: [
-      //       {
-      //         id: "1",
-      //         name: "Luana Farias",
-      //         email: "luana@deliver.com",
-      //         role: "SuperAdmin",
-      //         password: "bananinha",
-      //       },
-      //       {
-      //         " id": "2",
-      //         name: "Lígia",
-      //         email: "ligia@deliver.com",
-      //         role: "Admin",
-      //         password: "pipoca",
-      //       },
-      //     ],
-      //   };
-      // });
-      this.namespace;
       this.get("/users", (schema) => {
-        console.log("Mirage pegou", schema.users.all().models);
-        return schema.users.all().models;
+        return {
+          data: [
+            ...schema.users.all().models,
+            {
+              id: "1",
+              name: "Luana Farias",
+              email: "luana@deliver.com",
+              role: "SuperAdmin",
+              password: "bananinha",
+            },
+            {
+              id: "2",
+              name: "Lígia",
+              email: "ligia@deliver.com",
+              role: "Admin",
+              password: "pipoca",
+            },
+          ],
+        };
       });
+      this.namespace;
+
+      //   this.get("/users", (schema) => {
+      //     console.log("Mirage pegou", schema.users.all().models);
+      //     return schema.users.all().models;
+      //   });
       this.post("/users", (schema, request) => {
         let body = JSON.parse(request.requestBody);
         console.log(body);

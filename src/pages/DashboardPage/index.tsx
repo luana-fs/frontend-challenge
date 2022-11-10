@@ -13,7 +13,7 @@ export default function DashboardPage() {
 
   //--fix it - receber lista em outro lugar, aqui foi só teste
   const { usersList, setUsersList } = useContext(UsersListContext);
-  // console.log("dashborard - index.tsx", usersList);
+  console.log("dashborard - index.tsx", usersList);
   return (
     <>
       <Header title={"Dashboard"} goBack />

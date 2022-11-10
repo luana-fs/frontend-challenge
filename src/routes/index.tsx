@@ -16,8 +16,8 @@ export const Routes = () => {
     >
       {/* <LoginContainer /> */}
       {/* <SignInPage /> */}
-      {/* <DashboardPage /> */}
-      <SideMenu />
+      <DashboardPage />
+      {/* <SideMenu /> */}
     </NavigationContainer>
   );
 };

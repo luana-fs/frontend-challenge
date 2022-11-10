@@ -19,27 +19,30 @@ server();
 export default function App() {
   const [theme, setTheme] = useState(DarkTheme);
 
-  const addName = async (name: string) => {
-    try {
-      const res = await axios.post("/users", {
-        id: new Date(),
-        name,
-      });
-      console.log("Axios criou", res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const addName = async (name: string) => {
+  //   try {
+  //     const res = await axios.post("/user", {
+  //       id: new Date(),
+  //       name: "Raul",
+  //       email: "raul@deliver.com",
+  //       role: "User",
+  //       password: "pipoca",
+  //     });
+  //     console.log("Axios criou", res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const getUsers = async () => {
-    try {
-      const res = await axios.get("/users");
-      console.log("Axios pegou", res.data);
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getUsers = async () => {
+  //   try {
+  //     const res = await axios.get("/users");
+  //     console.log("Axios pegou", res.data);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -49,8 +52,8 @@ export default function App() {
             style={theme.dark ? ("light" as string) : ("dark" as string)}
           />
 
-          <DumbComponent onPress={addName} onPress2={getUsers} />
-          {/* <Routes /> */}
+          {/* <DumbComponent onPress={addName} onPress2={getUsers} /> */}
+          <Routes />
         </PaperProvider>
       </AllProviders>
     </>
