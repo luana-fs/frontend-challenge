@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { api } from "../api";
 import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
 
@@ -10,21 +10,17 @@ export function LoginContainer() {
   // console.log(data);
 
   useEffect(() => {
-    fetchData();
+    getAllUsers();
   }, []);
 
-  async function fetchData() {
+  const getAllUsers = async () => {
     try {
-      const res = await axios.get("users", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return console.log(res.data);
+      const res = await api.get("users");
+      return res.data;
     } catch (err) {
       return console.log("err", err);
     }
-  }
+  };
 
   return <LoginPage data={data} />;
 }

@@ -3,13 +3,13 @@ import { StatusBar } from "expo-status-bar";
 import { AppRegistry } from "react-native";
 import { Provider as PaperProvider, useTheme } from "react-native-paper";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Routes } from "./src/routes";
 
 import DefaultTheme from "./src/styles/theme/DefaultTheme";
 import DarkTheme from "./src/styles/theme/DarkTheme";
 
 import { createServer } from "miragejs";
+import { AllProviders } from "./src/contexts";
 
 if (window.server) {
   server.shutdown();
@@ -48,10 +48,16 @@ export default function App() {
 
   return (
     <>
-      <PaperProvider theme={theme}>
-        {theme.dark ? <StatusBar style="light" /> : <StatusBar style="dark" />}
-        <Routes />
-      </PaperProvider>
+      <AllProviders>
+        <PaperProvider theme={theme}>
+          {theme.dark ? (
+            <StatusBar style="light" />
+          ) : (
+            <StatusBar style="dark" />
+          )}
+          <Routes />
+        </PaperProvider>
+      </AllProviders>
     </>
   );
 }
