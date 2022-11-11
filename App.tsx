@@ -52,7 +52,6 @@ export default function App() {
             style={theme.dark ? ("light" as string) : ("dark" as string)}
           />
 
-          {/* <DumbComponent onPress={addName} onPress2={getUsers} /> */}
           <Routes />
         </PaperProvider>
       </AllProviders>

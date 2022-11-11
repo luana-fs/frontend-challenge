@@ -29,16 +29,29 @@ export const server = () =>
         };
       });
       this.namespace;
+      //pegar usuário por id
+      this.get("/users/:id", (schema, request) => {
+        const user = schema.users.find(request.params.id); //retorna null se id não existe
+        return user;
+      });
 
-      //   this.get("/users", (schema) => {
-      //     console.log("Mirage pegou", schema.users.all().models);
-      //     return schema.users.all().models;
-      //   });
+      //pega objeto por propriedades iguais
+      this.post(`/users/getBy`, (schema, request) => {
+        const res = schema.users.where(request.queryParams);
+        console.log("params", request.queryParams);
+        console.log(res);
+        return res.models;
+      });
+
       this.post("/users", (schema, request) => {
         let body = JSON.parse(request.requestBody);
-        console.log(body);
-        console.log("Mirage criou", schema.users.create(body));
         return schema.users.create(body);
+      });
+      //delete user by Id
+      this.delete("/users/:id", (schema, request) => {
+        return schema.users.find(request.params.id).destroy();
       });
     },
   });
+
+//examples https://github.com/miragejs/tutorial/blob/master/src/lib/server-final.js
