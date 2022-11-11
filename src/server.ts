@@ -41,6 +41,7 @@ export const server = () =>
         console.log("params", request.queryParams);
         console.log(res);
         return res.models;
+        //pra voltar certinho os ids na hora da ceianção precisam ser diferentes
       });
 
       this.post("/users", (schema, request) => {

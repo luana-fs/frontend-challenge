@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { api } from "../api";
+import { idGenerator } from "../services/idGenerator";
 
 type CreateUserBodyProps = {
   id: string;
@@ -23,15 +24,15 @@ export const UsersContext = ({ children }: any) => {
   console.log(usersList);
 
   useEffect(() => {
-    // getAllUsers();
+    getAllUsers();
     // findUserById("52");
-    createUser({
-      id: "52",
-      name: "jesus",
-      email: "jesus@deliver.com",
-      role: "User",
-      password: "pipoca",
-    });
+    // createUser({
+    //   id: idGenerator(),
+    //   name: "jesus",
+    //   email: "jesus@deliver.com",
+    //   role: "User",
+    //   password: "pipoca",
+    // });
   }, []);
 
   //endpoint pegar usuários
