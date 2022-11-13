@@ -38,16 +38,16 @@ export const server = () =>
       //pega objeto por propriedades iguais
       this.post(`/users/getBy`, (schema, request) => {
         const res = schema.users.where(request.queryParams);
-        console.log("params", request.queryParams);
-        console.log(res);
         return res.models;
         //pra voltar certinho os ids na hora da ceianção precisam ser diferentes
       });
 
+      //criar usuário
       this.post("/users", (schema, request) => {
         let body = JSON.parse(request.requestBody);
         return schema.users.create(body);
       });
+
       //delete user by Id
       this.delete("/users/:id", (schema, request) => {
         return schema.users.find(request.params.id).destroy();

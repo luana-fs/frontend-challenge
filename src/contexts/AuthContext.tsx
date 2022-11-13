@@ -1,70 +1,36 @@
-import axios from "axios";
-import React, {
-  createContext,
-  useEffect,
-  useState,
-  useContext,
-  SetStateAction,
-} from "react";
-import bcrypt from "bcrypt";
-import { api } from "../api";
+import React, { createContext, useContext, useEffect } from "react";
+import { Snackbar } from "react-native-paper";
 import { UsersListContext } from "./UsersContext";
-
-type CreateUserBodyProps = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  password: string;
-};
 
 export const AuthContext = createContext(false);
 
 export const Auth = ({ children }: any) => {
-  const [token, setToken] = useState([]);
-  //   console.log("token", token);
+  const usersContext = useContext(UsersListContext);
+  console.log("função findUser vindo do userContext", usersContext.handlers);
+  const { findUser } = usersContext.handlers;
 
-  const userContext = useContext(UsersListContext);
-
-  const user = { name: "Lígia", password: "pipoca" };
+  findUser({ email: "jesus@deliver.com", password: "pipoca" });
 
   useEffect(() => {
-    // userContext.handlers.getAllUsers();
-    // findUserById("52");
-    // userContext.handlers.createUser({
-    //   id: "5691515", //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-    //   name: "luana",
-    //   email: "luana@deliver.com",
-    //   role: "User",
-    //   password: "celular",
-    // });
-    userContext.handlers.findUser("luana@deliver.com");
-    // console.log("43", res);
+    handleLogin("jesus@deliver.com", findUser);
   }, []);
 
-  //   const saltRounds = 10;
-  //   const myPlaintextPassword = "s0//P4$$w0rD";
-  //   const someOtherPlaintextPassword = "not_bacon";
+  const handleLogin = async (email: string, findUser: (arg: {}) => object) => {
+    console.log("findUser sendo utilizada no auth context", findUser(email));
 
-  //   bcrypt.hash(myPlaintextPassword, saltRounds, function (err: any, hash: any) {
-  //     setToken(hash);
-  //     console.log(hash);
-  //   });
+    const user = await findUser(email);
 
-  // async function checkUser(username, password) {
+    console.log("user", findUser(email));
 
-  //   const match = await bcrypt.compare(password, user.passwordHash);
-
-  //   if (match) {
-  //     console.log(match)
-  //   }
-
-  //   //...
-  // }
-
-  //endpoint criar usuário
+    if (!user) {
+      <Snackbar visible>Usuário não encontrado</Snackbar>;
+    }
+    console.log("login realizado com sucesso");
+  };
 
   return (
-    <AuthContext.Provider value={{ token }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ handleLogin }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

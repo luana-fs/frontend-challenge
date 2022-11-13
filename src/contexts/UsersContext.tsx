@@ -21,13 +21,13 @@ export type UserContextType = {
 
 export const UsersContext = ({ children }: any) => {
   const [usersList, setUsersList] = useState([]);
-  console.log(usersList);
 
   useEffect(() => {
-    getAllUsers();
+    // getAllUsers();
     // findUserById("52");
+    // findUser("luana@deliver.com");
     // createUser({
-    //   id: idGenerator(),
+    //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
     //   name: "jesus",
     //   email: "jesus@deliver.com",
     //   role: "User",
@@ -35,50 +35,47 @@ export const UsersContext = ({ children }: any) => {
     // });
   }, []);
 
-  //endpoint pegar usuários
   const getAllUsers = async () => {
     try {
       const res = await axios.get("/users");
       setUsersList(res.data);
+      console.log("getAllUsers success", res.data);
       return res.data;
     } catch (error) {
-      console.log(error);
+      console.log("getAllUsers error", error);
     }
   };
-
-  //endpoint criar usuário
 
   const createUser = async (body: CreateUserBodyProps) => {
     try {
       const res = await axios.post("/users", body);
-      // console.log("Axios criou", res.data);
+      // console.log("CreateUser success", res.data);
     } catch (error) {
-      console.log(error);
+      console.log("createUser error", error);
     }
   };
 
   const findUserById = async (id: string) => {
     try {
       const res = await axios.get(`/users/${id}`);
-      // console.log(res.data);
+      // console.log('findUser success', res.data);
       return res;
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log("findUserById error", error);
     }
   };
 
   const findUser = async (password: string) => {
     try {
-      const res = await axios.post("/users/getBy", null, {
+      let res = await axios.post("/users/getBy", null, {
         params: {
           email: password,
         },
       });
-      // console.log("findiBy", res.config.name);
-      console.log("AXIOS", res.request.response);
-      return res.data.users;
-    } catch (err) {
-      console.log(err);
+      console.log("UsersContext request", res.request.response);
+      return res.request.response;
+    } catch (error) {
+      console.log("findUser error", error);
     }
   };
 
