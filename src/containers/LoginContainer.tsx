@@ -8,12 +8,21 @@ import LoginPage from "../pages/LoginPage";
 export function LoginContainer() {
   const { value: email, onChange: onChangeEmail } = useInput("");
   const { value: password, onChange: onChangePassword } = useInput("");
-  const data = { email, onChangeEmail, password, onChangePassword };
 
-  const { handlers } = useContext(UsersListContext);
-  const { findUser } = handlers;
+  const { handleLogin, isAuth } = useContext(AuthContext);
+  const {
+    handlers: { findUser },
+  } = useContext(UsersListContext);
 
-  const { handleLogin } = useContext(AuthContext);
+  const data = {
+    email,
+    onChangeEmail,
+    password,
+    onChangePassword,
+    handleLogin,
+    isAuth,
+    findUser,
+  };
 
   return <LoginPage data={data} />;
 }

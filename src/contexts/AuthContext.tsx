@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Button, Snackbar } from "react-native-paper";
 import { UsersListContext } from "./UsersContext";
+import * as RootNavigation from "../routes/RootNavigation";
 
-export const AuthContext = createContext(false);
+export const AuthContext = createContext({});
 
 export const Auth = ({ children }: any) => {
+  const [isAuth, setIsAuth] = useState(false);
   const usersContext = useContext(UsersListContext);
 
   const { findUser } = usersContext.handlers;
@@ -22,15 +24,24 @@ export const Auth = ({ children }: any) => {
     find(credentials);
 
     if (!user) {
+      setIsAuth(false);
+      RootNavigation.navigate("LoginPage");
       console.log("Usuário não encontrado");
     } else {
+      setIsAuth(true);
+      RootNavigation.navigate("DashboardPage");
       console.log("login realizado com sucesso");
     }
   };
 
+  const handleLogout = () => {
+    setIsAuth(false);
+    RootNavigation.navigate("LoginPage");
+  };
+
   return (
-    <AuthContext.Provider value={{ handleLogin }}>
-      <Button></Button>
+    <AuthContext.Provider value={{ handleLogin, handleLogout, isAuth }}>
+      {/* <Button></Button>
       <Button></Button>
       <Button
         onPress={() =>
@@ -41,7 +52,7 @@ export const Auth = ({ children }: any) => {
         }
       >
         Logar
-      </Button>
+      </Button> */}
       {children}
     </AuthContext.Provider>
   );

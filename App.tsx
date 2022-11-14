@@ -14,7 +14,7 @@ import LoginPage from "./src/pages/LoginPage";
 
 server();
 
-export default function App() {
+export default function App(props: any) {
   const [theme, setTheme] = useState(DarkTheme);
 
   return (
