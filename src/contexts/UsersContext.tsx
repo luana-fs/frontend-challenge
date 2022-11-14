@@ -26,13 +26,13 @@ export const UsersContext = ({ children }: any) => {
   useEffect(() => {
     // getAllUsers();
     // findUserById("52");
-    // findUser("luana@deliver.com");
+    // findUser("raul@deliver.com");
     // createUser({
     //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-    //   name: "raul",
-    //   email: "raul@deliver.com",
+    //   name: "miriam",
+    //   email: "miriam@deliver.com",
     //   role: "User",
-    //   password: "pipoca",
+    //   password: "azul",
     // });
   }, []);
 
@@ -66,12 +66,12 @@ export const UsersContext = ({ children }: any) => {
     }
   };
 
-  console.log("estado no userContext", user);
-  const findUser = async (email: string) => {
+  const findUser = async (credentials: { email: string; password: string }) => {
     try {
       let res = await axios.post("/users/getBy", null, {
         params: {
-          email,
+          email: credentials.email,
+          password: credentials.password,
         },
       });
       // console.log("UsersContext request", res.request.response);

@@ -15,8 +15,11 @@ export const Auth = ({ children }: any) => {
   //   // console.log("16", handleLogin("raul@deliver.com", findUser)); //quando eu chamo a função aqui, a requisição acontece.
   // }, []);
 
-  const handleLogin = (email: string, find: (arg: string) => any) => {
-    find(email);
+  const handleLogin = (
+    credentials: { email: string; password: string },
+    find: (arg: string) => any
+  ) => {
+    find(credentials);
 
     if (!user) {
       console.log("Usuário não encontrado");
@@ -29,7 +32,14 @@ export const Auth = ({ children }: any) => {
     <AuthContext.Provider value={{ handleLogin }}>
       <Button></Button>
       <Button></Button>
-      <Button onPress={() => handleLogin("maria@deliver.com", findUser)}>
+      <Button
+        onPress={() =>
+          handleLogin(
+            { email: "miriam@deliver.com", password: "azul" },
+            findUser
+          )
+        }
+      >
         Logar
       </Button>
       {children}
