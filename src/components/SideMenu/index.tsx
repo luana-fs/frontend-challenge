@@ -6,6 +6,9 @@ import LoginPage from "../../pages/LoginPage";
 import { Theme } from "../../styles/theme/types";
 import { CustomDrawer } from "./CustomDrawer";
 import Solicitations from "../../pages/Solicitations";
+import RegisterProduct from "../../pages/RegisterProduct";
+import ManageAccounts from "../../pages/ManageAccounts";
+import Products from "../../pages/Products";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
@@ -48,7 +51,7 @@ export const SideMenu = () => {
         />
         <Drawer.Screen
           name="Cadastrar produto"
-          component={LoginPage}
+          component={RegisterProduct}
           options={{
             drawerIcon: () => (
               <Avatar.Icon
@@ -62,7 +65,7 @@ export const SideMenu = () => {
         />
         <Drawer.Screen
           name="Gerenciar contas"
-          component={LoginPage}
+          component={ManageAccounts}
           options={{
             drawerIcon: () => (
               <Avatar.Icon
@@ -76,7 +79,7 @@ export const SideMenu = () => {
         />
         <Drawer.Screen
           name="Produtos"
-          component={LoginPage}
+          component={Products}
           options={{
             drawerIcon: () => (
               <Avatar.Icon

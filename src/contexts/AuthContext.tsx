@@ -6,7 +6,7 @@ import * as RootNavigation from "../routes/RootNavigation";
 export const AuthContext = createContext({});
 
 export const Auth = ({ children }: any) => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   const usersContext = useContext(UsersListContext);
 
   const { findUser } = usersContext.handlers;
@@ -32,6 +32,8 @@ export const Auth = ({ children }: any) => {
       RootNavigation.navigate("DashboardPage");
       console.log("login realizado com sucesso");
     }
+
+    return;
   };
 
   const handleLogout = () => {

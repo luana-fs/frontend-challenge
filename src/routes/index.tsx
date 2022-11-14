@@ -13,7 +13,6 @@ import SignInPage from "../pages/SignInPage";
 import { navigationRef } from "./RootNavigation";
 
 export const Routes = (props: any) => {
-  console.log("nav props", props);
   const isReactPaperTheme: Theme = ReactPaperTheme();
   const { isAuth } = useContext(AuthContext);
 
@@ -27,6 +26,7 @@ export const Routes = (props: any) => {
         {isAuth ? (
           <Stack.Group>
             {/* <SideMenu /> */}
+            <Stack.Screen name="SideMenu" component={SideMenu} />
             <Stack.Screen name="DashboardPage" component={DashboardPage} />
             <Stack.Screen name="LoginPage" component={LoginContainer} />
             <Stack.Screen name="SignInPage" component={SignInPage} />
