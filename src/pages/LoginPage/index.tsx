@@ -24,8 +24,6 @@ export default function LoginPage(props: any) {
     },
   } = props;
 
-  console.log("28", navigate);
-
   return (
     <View style={style.container}>
       <Title text={"Login"} />
@@ -39,7 +37,7 @@ export default function LoginPage(props: any) {
       <Button
         buttonText="Entrar"
         onPress={() =>
-          handleLogin({ email: email.text, password: password.text }, findUser)
+          handleLogin({ email: email, password: password }, findUser)
         }
       />
     </View>

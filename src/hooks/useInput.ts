@@ -7,6 +7,7 @@ export type OnChangeProps = {
 
 export const useInput = (initialValue: any) => {
   const [value, setValue] = useState(initialValue);
+  const { text } = value;
 
   const handleChange = (nativeEvent: OnChangeProps) => {
     const { target, text } = nativeEvent;
@@ -15,7 +16,7 @@ export const useInput = (initialValue: any) => {
   };
 
   return {
-    value,
+    value: text,
     onChange: handleChange,
   };
 };
