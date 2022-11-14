@@ -1,35 +1,37 @@
 import React, { createContext, useContext, useEffect } from "react";
-import { Snackbar } from "react-native-paper";
+import { Button, Snackbar } from "react-native-paper";
 import { UsersListContext } from "./UsersContext";
 
 export const AuthContext = createContext(false);
 
 export const Auth = ({ children }: any) => {
   const usersContext = useContext(UsersListContext);
-  console.log("função findUser vindo do userContext", usersContext.handlers);
+
   const { findUser } = usersContext.handlers;
+  const { user } = usersContext;
 
-  findUser({ email: "jesus@deliver.com", password: "pipoca" });
+  // useEffect(() => {
+  //   handleLogin("raul@deliv222er.com", findUser); //essa vai no on
+  //   // console.log("16", handleLogin("raul@deliver.com", findUser)); //quando eu chamo a função aqui, a requisição acontece.
+  // }, []);
 
-  useEffect(() => {
-    handleLogin("jesus@deliver.com", findUser);
-  }, []);
-
-  const handleLogin = async (email: string, findUser: (arg: {}) => object) => {
-    console.log("findUser sendo utilizada no auth context", findUser(email));
-
-    const user = await findUser(email);
-
-    console.log("user", findUser(email));
+  const handleLogin = (email: string, find: (arg: string) => any) => {
+    find(email);
 
     if (!user) {
-      <Snackbar visible>Usuário não encontrado</Snackbar>;
+      console.log("Usuário não encontrado");
+    } else {
+      console.log("login realizado com sucesso");
     }
-    console.log("login realizado com sucesso");
   };
 
   return (
     <AuthContext.Provider value={{ handleLogin }}>
+      <Button></Button>
+      <Button></Button>
+      <Button onPress={() => handleLogin("maria@deliver.com", findUser)}>
+        Logar
+      </Button>
       {children}
     </AuthContext.Provider>
   );

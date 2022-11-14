@@ -21,6 +21,7 @@ export type UserContextType = {
 
 export const UsersContext = ({ children }: any) => {
   const [usersList, setUsersList] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     // getAllUsers();
@@ -28,8 +29,8 @@ export const UsersContext = ({ children }: any) => {
     // findUser("luana@deliver.com");
     // createUser({
     //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-    //   name: "jesus",
-    //   email: "jesus@deliver.com",
+    //   name: "raul",
+    //   email: "raul@deliver.com",
     //   role: "User",
     //   password: "pipoca",
     // });
@@ -65,15 +66,18 @@ export const UsersContext = ({ children }: any) => {
     }
   };
 
-  const findUser = async (password: string) => {
+  console.log("estado no userContext", user);
+  const findUser = async (email: string) => {
     try {
       let res = await axios.post("/users/getBy", null, {
         params: {
-          email: password,
+          email,
         },
       });
-      console.log("UsersContext request", res.request.response);
-      return res.request.response;
+      // console.log("UsersContext request", res.request.response);
+      console.log("UsersContext request", res.data[0]);
+      setUser(res.data[0]);
+      return res.data[0];
     } catch (error) {
       console.log("findUser error", error);
     }
@@ -87,7 +91,9 @@ export const UsersContext = ({ children }: any) => {
   };
 
   return (
-    <UsersListContext.Provider value={{ usersList, setUsersList, handlers }}>
+    <UsersListContext.Provider
+      value={{ usersList, user, setUsersList, handlers }}
+    >
       {children}
     </UsersListContext.Provider>
   );
