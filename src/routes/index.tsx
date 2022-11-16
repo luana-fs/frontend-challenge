@@ -26,7 +26,7 @@ export const Routes = (props: any) => {
     >
       <Stack.Navigator
         initialRouteName={"SideMenu"}
-        
+        screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SideMenu" component={SideMenu} />
         <Stack.Screen name="DashboardPage" component={DashboardPage} />

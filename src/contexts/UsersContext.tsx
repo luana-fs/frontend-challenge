@@ -29,8 +29,8 @@ export const UsersContext = ({ children }: any) => {
     // findUser("raul@deliver.com");
     // createUser({
     //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-    //   name: "miriam",
-    //   email: "miriam@deliver.com",
+    //   name: "jesus",
+    //   email: "jesus@deliver.com",
     //   role: "User",
     //   password: "azul",
     // });

@@ -20,7 +20,7 @@ export const SideMenu = () => {
 
   return (
     <Drawer.Navigator
-      defaultStatus={"open"}
+      // defaultStatus={"open"}
       useLegacyImplementation
       screenOptions={{ headerShown: false }}
       initialRouteName="DashboardPage"

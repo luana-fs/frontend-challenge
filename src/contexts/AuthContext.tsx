@@ -6,7 +6,7 @@ import * as RootNavigation from "../routes/RootNavigation";
 export const AuthContext = createContext({});
 
 export const Auth = ({ children }: any) => {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const usersContext = useContext(UsersListContext);
 
   const { findUser } = usersContext.handlers;
@@ -23,13 +23,15 @@ export const Auth = ({ children }: any) => {
   ) => {
     find(credentials);
 
+    console.log(user);
+
     if (!user) {
       setIsAuth(false);
       RootNavigation.navigate("LoginPage");
       console.log("Usuário não encontrado");
     } else {
       setIsAuth(true);
-      RootNavigation.navigate("DashboardPage");
+      RootNavigation.navigate("SideMenu"); //quando tiver drawer, o login precisa redirecionar pra ele, e no proprio drawer colocamos a pagina inicial a qual queremos
       console.log("login realizado com sucesso");
     }
 
@@ -42,7 +44,7 @@ export const Auth = ({ children }: any) => {
   };
 
   return (
-    <AuthContext.Provider value={{ handleLogin, handleLogout, isAuth }}>
+    <AuthContext.Provider value={{ handleLogin, handleLogout, isAuth, user }}>
       {/* <Button></Button>
       <Button></Button>
       <Button
