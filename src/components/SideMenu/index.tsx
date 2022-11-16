@@ -1,26 +1,19 @@
 import * as React from "react";
-import { Avatar, useTheme as ReactPaperTheme } from "react-native-paper";
-import {
-  createDrawerNavigator,
-  DrawerItem,
-  useDrawerStatus,
-} from "@react-navigation/drawer";
+import { Avatar, useTheme as ReactPaperTheme, Text } from "react-native-paper";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import DashboardPage from "../../pages/DashboardPage";
-import LoginPage from "../../pages/LoginPage";
-import { Theme } from "../../styles/theme/types";
 import { CustomDrawer } from "./CustomDrawer";
 import Solicitations from "../../pages/Solicitations";
 import RegisterProduct from "../../pages/RegisterProduct";
 import ManageAccounts from "../../pages/ManageAccounts";
 import Products from "../../pages/Products";
+import { useNavigation } from "@react-navigation/native";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
-  // console.log(useDrawerStatus());
 
   return (
     <Drawer.Navigator
-      // defaultStatus={"open"}
       useLegacyImplementation
       screenOptions={{ headerShown: false }}
       initialRouteName="DashboardPage"
@@ -91,20 +84,6 @@ export const SideMenu = () => {
             <Avatar.Icon
               size={24}
               icon="format-list-bulleted-square"
-              style={{ backgroundColor: "transparent" }}
-              size={32}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Sair"
-        component={LoginPage}
-        options={{
-          drawerIcon: () => (
-            <Avatar.Icon
-              size={24}
-              icon="logout-variant"
               style={{ backgroundColor: "transparent" }}
               size={32}
             />
