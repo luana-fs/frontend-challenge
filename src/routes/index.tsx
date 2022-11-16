@@ -11,32 +11,27 @@ import { AuthContext } from "../contexts/AuthContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignInPage from "../pages/SignInPage";
 import { navigationRef } from "./RootNavigation";
+import { useDrawerStatus } from "@react-navigation/drawer";
 
 export const Routes = (props: any) => {
   const isReactPaperTheme: Theme = ReactPaperTheme();
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, user } = useContext(AuthContext);
 
   const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer
       ref={navigationRef}
       theme={isReactPaperTheme.dark ? DarkTheme : DefaultTheme}
     >
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {isAuth ? (
-          <Stack.Group>
-            {/* <SideMenu /> */}
-            <Stack.Screen name="SideMenu" component={SideMenu} />
-            <Stack.Screen name="DashboardPage" component={DashboardPage} />
-            <Stack.Screen name="LoginPage" component={LoginContainer} />
-            <Stack.Screen name="SignInPage" component={SignInPage} />
-          </Stack.Group>
-        ) : (
-          <Stack.Group>
-            <Stack.Screen name="LoginPage" component={LoginContainer} />
-            <Stack.Screen name="SignInPage" component={SignInPage} />
-          </Stack.Group>
-        )}
+      <Stack.Navigator
+        initialRouteName={"SideMenu"}
+        
+      >
+        <Stack.Screen name="SideMenu" component={SideMenu} />
+        <Stack.Screen name="DashboardPage" component={DashboardPage} />
+        <Stack.Screen name="LoginPage" component={LoginContainer} />
+        <Stack.Screen name="SignInPage" component={SignInPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
