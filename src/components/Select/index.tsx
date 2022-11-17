@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { List } from "react-native-paper";
 import { SelectProps } from "./types";
 
-export const Select = ({ title, data }: SelectProps) => {
+export const Select = ({ title, data, role }: SelectProps) => {
   const [expanded, setExpanded] = useState(false);
   const [itemExpanded, setItemExpanded] = useState(false);
 
@@ -15,7 +15,11 @@ export const Select = ({ title, data }: SelectProps) => {
           <List.Item
             title={item.name}
             onPress={item.onPress}
-            right={(props) => <List.Icon {...props} icon="check" />}
+            right={
+              item.name === role
+                ? (props) => <List.Icon {...props} icon="check" />
+                : null
+            }
           />
         ))}
       </List.Accordion>

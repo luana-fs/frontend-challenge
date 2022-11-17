@@ -53,7 +53,7 @@ export default function SignInPage({
         role={role}
         title={"Selecione o tipo de usuário"}
         data={[
-          { name: "Normal", onPress: () => setRole("User") },
+          { name: "User", onPress: () => setRole("User") },
           { name: "Admin", onPress: () => setRole("Admin") },
         ]}
       />
