@@ -9,19 +9,12 @@ export function LoginContainer() {
   const { value: email, onChange: onChangeEmail } = useInput("");
   const { value: password, onChange: onChangePassword } = useInput("");
 
-  const { handleLogin, isAuth } = useContext(AuthContext);
-  const {
-    handlers: { findUser },
-  } = useContext(UsersListContext);
+  const { handlers } = useContext(AuthContext);
 
   const data = {
-    email,
-    onChangeEmail,
-    password,
-    onChangePassword,
-    handleLogin,
-    isAuth,
-    findUser,
+    states: { email, password },
+    setters: { onChangeEmail, onChangePassword },
+    handlers: { handleLogin: handlers.handleLogin },
   };
 
   return <LoginPage data={data} />;

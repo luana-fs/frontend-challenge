@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignInPage from "../pages/SignInPage";
 import { navigationRef } from "./RootNavigation";
 import { useDrawerStatus } from "@react-navigation/drawer";
+import { SignInContainer } from "../containers/SignInContainer";
 
 export const Routes = (props: any) => {
   const isReactPaperTheme: Theme = ReactPaperTheme();
@@ -31,7 +32,7 @@ export const Routes = (props: any) => {
         <Stack.Screen name="SideMenu" component={SideMenu} />
         <Stack.Screen name="DashboardPage" component={DashboardPage} />
         <Stack.Screen name="LoginPage" component={LoginContainer} />
-        <Stack.Screen name="SignInPage" component={SignInPage} />
+        <Stack.Screen name="SignInPage" component={SignInContainer} />
       </Stack.Navigator>
     </NavigationContainer>
   );

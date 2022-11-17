@@ -7,23 +7,19 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Title } from "../../components/Title";
 import { navigate } from "../../routes/RootNavigation";
+import { findUser } from "../../services/Users";
 import { styles } from "./styles";
 import { LoginPageProps } from "./types";
 
-export default function LoginPage(props: any) {
+export default function LoginPage({
+  data: {
+    states: { email, password },
+    setters: { onChangeEmail, onChangePassword },
+    handlers: { handleLogin },
+  },
+}: any) {
   const { colors } = useTheme();
   const style = styles(colors);
-
-  const {
-    data: {
-      email,
-      onChangeEmail,
-      password,
-      onChangePassword,
-      handleLogin,
-      findUser,
-    },
-  } = props;
 
   return (
     <View style={style.container}>

@@ -14,17 +14,14 @@ export default function DashboardPage() {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const { handleLogout } = useContext(AuthContext);
+  const { handlers } = useContext(AuthContext);
 
-  //--fix it - receber lista em outro lugar, aqui foi só teste
-  const { usersList, setUsersList } = useContext(UsersListContext);
-  // console.log("dashborard - index.tsx", usersList);
   return (
     <>
       <Header title={"Dashboard"} goBack />
       <View style={style.container}>
         <Headline>Olá, Luana</Headline>
-        <Button onPress={() => handleLogout()}>Logout</Button>
+        <Button onPress={() => handlers.handleLogout()}>Logout</Button>
       </View>
     </>
   );

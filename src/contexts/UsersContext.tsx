@@ -1,101 +1,64 @@
-import axios from "axios";
 import React, { createContext, useEffect, useState, useContext } from "react";
-import { api } from "../api";
-import { idGenerator } from "../services/idGenerator";
+import {
+  createUser,
+  getAllUsers,
+  findUserById,
+  findUser,
+} from "../services/Users";
 
-type CreateUserBodyProps = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  password: string;
-};
-
-export const UsersListContext = createContext([]);
-
-//fix it
-export type UserContextType = {
-  usersList: [];
-  setUsersList: () => void;
-};
+export const UsersListContext = createContext({});
 
 export const UsersContext = ({ children }: any) => {
   const [usersList, setUsersList] = useState([]);
   const [user, setUser] = useState([]);
 
-  useEffect(() => {
-    // getAllUsers();
-    // findUserById("52");
-    // findUser("raul@deliver.com");
-    // createUser({
-    //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-    //   name: "jesus",
-    //   email: "jesus@deliver.com",
-    //   role: "User",
-    //   password: "azul",
-    // });
-  }, []);
+  console.log(usersList, user);
 
-  const getAllUsers = async () => {
-    try {
-      const res = await axios.get("/users");
-      setUsersList(res.data);
-      console.log("getAllUsers success", res.data);
-      return res.data;
-    } catch (error) {
-      console.log("getAllUsers error", error);
-    }
+  // useEffect(() => {
+  //   // getAllUsers();
+  //   // findUserById("52");
+  //   // findUser("raul@deliver.com");
+  //   // createUser({
+  //   //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
+  //   //   name: "jesus",
+  //   //   email: "jesus@deliver.com",
+  //   //   role: "User",
+  //   //   password: "azul",
+  //   // });
+  // }, []);
+
+  const handleGetAllUsers = () => {
+    const usersList = getAllUsers();
+    console.log("getAllUsers success", usersList);
+    setUsersList(usersList);
   };
 
-  const createUser = async (body: CreateUserBodyProps) => {
-    try {
-      const res = await axios.post("/users", body);
-      setUser(res);
-      console.log("Criado", user);
-      // console.log("CreateUser success", res.data);
-    } catch (error) {
-      console.log("createUser error", error);
-    }
+  const handleCreateUser = (body: any) => {
+    const user = createUser(body);
+    setUser(user);
   };
 
-  const findUserById = async (id: string) => {
-    try {
-      const res = await axios.get(`/users/${id}`);
-      // console.log('findUser success', res.data);
-      return res;
-    } catch (error) {
-      console.log("findUserById error", error);
-    }
+  const handleFindUserById = (id: string) => {
+    const user = findUserById(id);
+    setUser(user);
   };
 
-  const findUser = async (credentials: { email: string; password: string }) => {
-    try {
-      let res = await axios.post("/users/getBy", null, {
-        params: {
-          email: credentials.email,
-          password: credentials.password,
-        },
-      });
-      // console.log("UsersContext request", res.request.response);
-      console.log("UsersContext request", res.data[0]);
-      setUser(res.data[0]);
-      return res.data[0];
-    } catch (error) {
-      console.log("findUser error", error);
-    }
+  const handleFindUser = (params: { email: string; password: string }) => {
+    const user = findUser(params);
+    setUser(user);
   };
+
+  const states = { usersList, user, setUsersList, setUser };
 
   const handlers = {
-    getAllUsers,
-    createUser,
-    findUserById,
-    findUser,
+    handleGetAllUsers,
+    handleCreateUser,
+    handleFindUserById,
+    handleFindUser,
   };
 
   return (
-    <UsersListContext.Provider
-      value={{ usersList, user, setUsersList, handlers }}
-    >
+    <UsersListContext.Provider value={{ states, handlers }}>
       {children}
     </UsersListContext.Provider>
   );
