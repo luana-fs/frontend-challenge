@@ -1,7 +1,8 @@
 import { DrawerContentScrollView } from "@react-navigation/drawer";
+import { Link } from "@react-navigation/native";
 import React from "react";
 import { View } from "react-native";
-import { useTheme } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Title } from "../../components/Title";
@@ -40,6 +41,10 @@ export default function LoginPage(props: any) {
           handleLogin({ email: email, password: password }, findUser)
         }
       />
+      <Text>
+        ou
+        <Link to={{ screen: "SignInPage" }}>Cadastre-se</Link>
+      </Text>
     </View>
   );
 }

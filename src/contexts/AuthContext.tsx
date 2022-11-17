@@ -9,13 +9,22 @@ export const Auth = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
   const usersContext = useContext(UsersListContext);
 
-  const { findUser } = usersContext.handlers;
+  const { findUser, createUser } = usersContext.handlers;
   const { user } = usersContext;
 
-  // useEffect(() => {
-  //   handleLogin("raul@deliv222er.com", findUser); //essa vai no on
-  //   // console.log("16", handleLogin("raul@deliver.com", findUser)); //quando eu chamo a função aqui, a requisição acontece.
-  // }, []);
+  // const handleSignIn = (user, find) => {
+  //   find(user);
+
+  //   if (!user) {
+  //     createUser(user);
+  //     RootNavigation.navigate("LoginPage");
+
+  //     console.log("criou", user);
+  //     console.log("Usuário não encontrado");
+  //   } else {
+  //     console.log("O usuário já existe");
+  //   }
+  // };
 
   const handleLogin = (
     credentials: { email: string; password: string },

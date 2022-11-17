@@ -50,6 +50,8 @@ export const UsersContext = ({ children }: any) => {
   const createUser = async (body: CreateUserBodyProps) => {
     try {
       const res = await axios.post("/users", body);
+      setUser(res);
+      console.log("Criado", user);
       // console.log("CreateUser success", res.data);
     } catch (error) {
       console.log("createUser error", error);
