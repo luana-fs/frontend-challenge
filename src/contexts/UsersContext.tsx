@@ -10,6 +10,7 @@ export const UsersListContext = createContext({});
 
 export const UsersContext = ({ children }: any) => {
   const [usersList, setUsersList] = useState([]);
+  const [solicitationsList, setSolicitationsList] = useState([]);
   const [user, setUser] = useState([]);
 
   console.log(usersList, user);
@@ -48,13 +49,44 @@ export const UsersContext = ({ children }: any) => {
     setUser(user);
   };
 
-  const states = { usersList, user, setUsersList, setUser };
+  const handleSolicitations = (user: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    password: string;
+  }) => {
+    console.log("user chegou", user);
+    const newSolicitationsList = [...solicitationsList, user];
+    setSolicitationsList(newSolicitationsList);
+    console.log("nova lista", solicitationsList);
+  };
+
+  const handleAcceptSolicitation = (user: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    password: string;
+  }) => {
+    const newUsersList = [...usersList, user];
+    setUsersList(newUsersList);
+
+    const newSolicitationsList = solicitationsList.filter(
+      (item) => item.id !== user.id
+    );
+    setSolicitationsList([...newSolicitationsList]);
+  };
+
+  const states = { usersList, user, setUsersList, setUser, solicitationsList };
 
   const handlers = {
     handleGetAllUsers,
     handleCreateUser,
     handleFindUserById,
     handleFindUser,
+    handleSolicitations,
+    handleAcceptSolicitation,
   };
 
   return (

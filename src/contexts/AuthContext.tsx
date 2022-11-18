@@ -11,7 +11,8 @@ export const Auth = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
 
   const {
-    states: { user },
+    states: { user, solicitatiosList },
+    handlers: { handleSolicitations },
   } = useContext(UsersListContext);
 
   const handleSignIn = (
@@ -29,6 +30,11 @@ export const Auth = ({ children }: any) => {
         role: userData.role,
         password: userData.password,
       };
+
+      if (user.role === "Admin") {
+        handleSolicitations(user);
+        return;
+      }
       createUser(user);
       setIsAuth(true);
       RootNavigation.navigate("SideMenu");

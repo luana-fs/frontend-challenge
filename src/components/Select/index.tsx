@@ -13,6 +13,7 @@ export const Select = ({ title, data, role }: SelectProps) => {
       <List.Accordion title={title} expanded={expanded} onPress={handlePress}>
         {data.map((item: any) => (
           <List.Item
+            key={item.name}
             title={item.name}
             onPress={item.onPress}
             right={

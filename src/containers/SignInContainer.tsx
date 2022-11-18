@@ -14,7 +14,6 @@ export function SignInContainer() {
   const [role, setRole] = useState("");
 
   const { handlers } = useContext(AuthContext);
-  console.log("ue", handlers);
 
   const data = {
     states: { email, password, confirmPassword, role },
