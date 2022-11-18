@@ -12,7 +12,7 @@ export const Auth = ({ children }: any) => {
 
   const {
     states: { user, solicitatiosList },
-    handlers: { handleSolicitations },
+    handlers: { handleSolicitations, handleGetAllUsers },
   } = useContext(UsersListContext);
 
   const handleSignIn = (
@@ -36,6 +36,7 @@ export const Auth = ({ children }: any) => {
         return;
       }
       createUser(user);
+      handleGetAllUsers();
       setIsAuth(true);
       RootNavigation.navigate("SideMenu");
       console.log("criou", user);
