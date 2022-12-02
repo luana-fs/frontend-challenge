@@ -13,7 +13,8 @@ export const UsersContext = ({ children }: any) => {
   const [solicitationsList, setSolicitationsList] = useState([]);
   const [user, setUser] = useState([]);
 
-  console.log("lista", usersList, user);
+  console.log("user", user);
+  console.log("lista", usersList);
 
   // useEffect(() => {
   //   // getAllUsers();
@@ -28,14 +29,15 @@ export const UsersContext = ({ children }: any) => {
   //   // });
   // }, []);
 
-  const handleGetAllUsers = () => {
-    const usersList = getAllUsers();
+  const handleGetAllUsers = async () => {
+    const usersList = await getAllUsers();
     console.log("getAllUsers success", usersList);
     setUsersList(usersList);
   };
 
   const handleCreateUser = (body: any) => {
     const user = createUser(body);
+    console.log(user);
     setUser(user);
   };
 
@@ -44,8 +46,12 @@ export const UsersContext = ({ children }: any) => {
     setUser(user);
   };
 
-  const handleFindUser = (params: { email: string; password: string }) => {
-    const user = findUser(params);
+  const handleFindUser = async (params: {
+    email: string;
+    password: string;
+  }) => {
+    const user = await findUser(params);
+    console.log("q", user);
     setUser(user);
   };
 
