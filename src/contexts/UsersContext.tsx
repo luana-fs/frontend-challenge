@@ -13,9 +13,6 @@ export const UsersContext = ({ children }: any) => {
   const [solicitationsList, setSolicitationsList] = useState([]);
   const [user, setUser] = useState([]);
 
-  console.log("user", user);
-  console.log("lista", usersList);
-
   // useEffect(() => {
   //   handleGetAllUsers();
   //   // getAllUsers();

@@ -10,6 +10,8 @@ export const AuthContext = createContext({});
 export const Auth = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
 
+  console.log("logado:", isAuth);
+
   const {
     states: { user, solicitatiosList },
     handlers: { handleSolicitations, handleGetAllUsers, handleFindUser },
@@ -33,12 +35,12 @@ export const Auth = ({ children }: any) => {
       if (user.role === "Admin") {
         handleSolicitations(user);
         return;
+      } else {
+        createUser(user);
+        handleGetAllUsers();
+        RootNavigation.navigate("LoginPage");
+        // console.log("criou", user);
       }
-      createUser(user);
-      handleGetAllUsers();
-      setIsAuth(true);
-      RootNavigation.navigate("SideMenu");
-      console.log("criou", user);
     } else {
       console.log("O usuário já existe");
     }
