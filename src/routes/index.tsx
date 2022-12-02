@@ -26,13 +26,18 @@ export const Routes = (props: any) => {
       theme={isReactPaperTheme.dark ? DarkTheme : DefaultTheme}
     >
       <Stack.Navigator
-        initialRouteName={"SideMenu"}
+        initialRouteName={isAuth ? "SideMenu" : "LoginPage"}
         screenOptions={{ headerShown: false }}
       >
+        {isAuth ?? (
+          <>
+            <Stack.Screen name="LoginPage" component={LoginContainer} />
+            <Stack.Screen name="SignInPage" component={SignInContainer} />
+          </>
+        )}
+
         <Stack.Screen name="SideMenu" component={SideMenu} />
         <Stack.Screen name="DashboardPage" component={DashboardPage} />
-        <Stack.Screen name="LoginPage" component={LoginContainer} />
-        <Stack.Screen name="SignInPage" component={SignInContainer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
