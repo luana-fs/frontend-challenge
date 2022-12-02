@@ -5,8 +5,8 @@ import { UsersContext } from "../contexts/UsersContext";
 export const getAllUsers = async () => {
   try {
     const res = await axios.get("/users");
-    console.log("getAllUsers success", res.data);
-    return res.data;
+    // console.log("getAllUsers success", res.data.data);
+    return res.data.data;
   } catch (error) {
     console.log("getAllUsers error", error);
   }

@@ -17,6 +17,7 @@ export const UsersContext = ({ children }: any) => {
   console.log("lista", usersList);
 
   // useEffect(() => {
+  //   handleGetAllUsers();
   //   // getAllUsers();
   //   // findUserById("52");
   //   // findUser("raul@deliver.com");
@@ -31,7 +32,6 @@ export const UsersContext = ({ children }: any) => {
 
   const handleGetAllUsers = async () => {
     const usersList = await getAllUsers();
-    console.log("getAllUsers success", usersList);
     setUsersList(usersList);
   };
 
@@ -62,10 +62,8 @@ export const UsersContext = ({ children }: any) => {
     role: string;
     password: string;
   }) => {
-    console.log("user chegou", user);
     const newSolicitationsList = [...solicitationsList, user];
     setSolicitationsList(newSolicitationsList);
-    console.log("nova lista", solicitationsList);
   };
 
   const handleAcceptSolicitation = (user: {
@@ -81,7 +79,9 @@ export const UsersContext = ({ children }: any) => {
     const newSolicitationsList = solicitationsList.filter(
       (item) => item.id !== user.id
     );
-    setSolicitationsList([...newSolicitationsList]);
+
+    setSolicitationsList(newSolicitationsList);
+    console.log("Solicitação aceita com sucesso!");
   };
 
   const states = { usersList, user, setUsersList, setUser, solicitationsList };
