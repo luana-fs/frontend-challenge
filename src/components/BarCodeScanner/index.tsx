@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { Button, StyleSheet, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
+import { Input } from "../Input";
 
 export const BarCodeScannerComponent = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -37,13 +38,13 @@ export const BarCodeScannerComponent = () => {
 
   return (
     <View style={style.container}>
-      <BarCodeScanner
+      {/* <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
         <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
+      )} */}
     </View>
   );
 };

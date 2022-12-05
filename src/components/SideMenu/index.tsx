@@ -8,6 +8,7 @@ import RegisterProduct from "../../pages/RegisterProduct";
 import ManageAccounts from "../../pages/ManageAccounts";
 import Products from "../../pages/Products";
 import { useNavigation } from "@react-navigation/native";
+import { RegisterProductContainer } from "../../containers/RegisterProductContainer";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
@@ -50,7 +51,7 @@ export const SideMenu = () => {
       />
       <Drawer.Screen
         name="Cadastrar produto"
-        component={RegisterProduct}
+        component={RegisterProductContainer}
         options={{
           drawerIcon: () => (
             <Avatar.Icon

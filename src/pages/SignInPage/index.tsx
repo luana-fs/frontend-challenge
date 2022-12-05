@@ -50,6 +50,7 @@ export default function SignInPage({
       />
 
       <Select
+        //FIX IT - role mudar para selectedOption
         role={role}
         title={"Selecione o tipo de usuário"}
         data={[

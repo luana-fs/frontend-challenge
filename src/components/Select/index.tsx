@@ -17,6 +17,7 @@ export const Select = ({ title, data, role }: SelectProps) => {
             title={item.name}
             onPress={item.onPress}
             right={
+              //FIX IT - mudar role para selecterOption
               item.name === role
                 ? (props) => <List.Icon {...props} icon="check" />
                 : null
