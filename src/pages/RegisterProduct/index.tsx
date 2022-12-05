@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { View } from "react-native";
 import { Button, Headline, useTheme } from "react-native-paper";
+import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
 import { Header } from "../../components/Header";
 import { Title } from "../../components/Title";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -18,9 +19,10 @@ export default function RegisterProduct() {
 
   return (
     <>
-      <Header title={"Dashboard"} goBack />
+      <Header title={"RegisterProduct"} goBack />
       <View style={style.container}>
         <Headline>Cadastrar produto</Headline>
+        <BarCodeScannerComponent />
         <Button onPress={() => handleLogout()}>Logout</Button>
       </View>
     </>
