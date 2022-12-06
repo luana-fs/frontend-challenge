@@ -88,6 +88,8 @@ export const server = () =>
 
       //delete product by Id
       this.delete("/products/:id", (schema, request) => {
+        console.log("schema", schema.products);
+        console.log("request", schema.products.find(request.params.id));
         return schema.products.find(request.params.id).destroy();
       });
     },

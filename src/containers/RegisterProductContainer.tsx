@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { api } from "../api";
 import { AuthContext } from "../contexts/AuthContext";
+import { ProductContext } from "../contexts/ProductContext";
 import { UsersContext, UsersListContext } from "../contexts/UsersContext";
 import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
@@ -12,15 +13,22 @@ import {
 } from "../services/Product";
 
 export function RegisterProductContainer() {
+  const productContext = useContext(ProductContext);
+  const authContext = useContext(AuthContext);
+
+  console.log("USHDUSHD", productContext.handlers);
+
   const { value: productName, onChange: onChangeProductName } = useInput("");
-  const [category, setCategory] = useState("");
   const { value: barCode, onChange: onChangeBarCode } = useInput("");
+  const [category, setCategory] = useState("");
+  const [createdBy, setCreatedBy] = useState({});
 
   useEffect(() => {
-    // getAllProducts();
-    // createProduct({
+    // productContext.handlers.handleGetAllProducts();
+    // handleDeleteProduct("2345");
+    // productContext.handlers.handleCreateProduct({
     //   id: "2345",
-    //   name: "Calças Jeans",
+    //   name: "CHOCOLATEEEEE",
     //   category: "Roupas",
     //   barCode: "900909",
     //   createdyBy: {
@@ -30,17 +38,28 @@ export function RegisterProductContainer() {
     //     role: "User",
     //   },
     // });
-    // findProductById("2345");
   }, []);
 
-  // const { handlers } = useContext(ProductContext);
+  //FIX IT - criar função created by e pegar infos do storage
+  const getUserInfo = () => {
+    return {
+      id: "jojp290kj3i3jo",
+      name: "lua",
+      email: "lua@deliver",
+      role: "User",
+    };
+  };
 
-  // const data = {
-  //   states: { category, setCategory },
-  //   setters: { onChangeProductName, onChangeBarCode },
-  //   handlers: { handleLogin: handlers.createProduct },
-  // };
+  const data = {
+    contexts: { productContext, authContext },
+    states: { productName, barCode, category },
+    setters: {
+      setCategory,
+      setCreatedBy,
+      onChangeProductName,
+      onChangeBarCode,
+    },
+  };
 
-  //FIX IT - dados a serem enviados para componente
-  return <RegisterProduct data={{ category, setCategory }} />;
+  return <RegisterProduct data={data} />;
 }

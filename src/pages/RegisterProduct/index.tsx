@@ -1,29 +1,35 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React from "react";
 import { View } from "react-native";
 import { Button, Headline, useTheme } from "react-native-paper";
 import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
-import { Title } from "../../components/Title";
-import { AuthContext } from "../../contexts/AuthContext";
-import { UsersListContext } from "../../contexts/UsersContext";
 
-import * as RootNavigation from "../../routes/RootNavigation";
 import { styles } from "./styles";
 
-export default function RegisterProduct(props) {
+export default function RegisterProduct({
+  data: {
+    contexts: { productContext, authContext },
+    states: { productName, barCode, category },
+    setters: {
+      setCategory,
+      setCreatedBy,
+      onChangeProductName,
+      onChangeBarCode,
+    },
+  },
+}: any) {
+  const {
+    handlers: { handleGetAllProducts, handleCreateProduct },
+  } = productContext;
+
+  const {
+    handlers: { handleLogout },
+  } = authContext;
+
   const { colors } = useTheme();
   const style = styles(colors);
-
-  const { category, setCategory } = props.data;
-
-  console.log(props);
-
-  // const {
-  //   handlers: { handleLogout },
-  // } = useContext(AuthContext);
 
   return (
     <>
@@ -31,7 +37,11 @@ export default function RegisterProduct(props) {
       <View style={style.container}>
         <Headline>Cadastrar produto</Headline>
 
-        <Input textLabel="Nome do produto" value="" />
+        <Input
+          textLabel="Nome do produto"
+          value={productName}
+          onChange={onChangeProductName}
+        />
         <Select
           data={[
             { name: "Roupas", onPress: () => setCategory("Roupas") },
@@ -43,7 +53,26 @@ export default function RegisterProduct(props) {
           title={"Selecione a categoria"}
           role={category}
         />
-        <BarCodeScannerComponent />
+        {/* <Button onPress={() => setActivateBarScan}>a</Button> */}
+        {productName && category ? <BarCodeScannerComponent /> : null}
+        {/* <Button
+          onPress={() =>
+            handleCreateProduct({
+              id: "2345",
+              name: "tomate",
+              category: "Roupas",
+              barCode: "900909",
+              createdyBy: {
+                id: "jojp290kj3i3jo",
+                name: "lua",
+                email: "lua@deliver",
+                role: "User",
+              },
+            })
+          }
+        >
+          Criar
+        </Button> */}
         <Button onPress={() => handleLogout()}>Logout</Button>
       </View>
     </>

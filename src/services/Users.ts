@@ -20,6 +20,7 @@ export const createUser = async (body: {
   password: string;
 }) => {
   try {
+    //FIX IT - cade o return dessa função?
     const res = await axios.post("/users", body);
     console.log("CreateUser success", res.data);
   } catch (error) {

@@ -1,86 +1,78 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Button, Snackbar } from "react-native-paper";
-import { UsersListContext } from "./UsersContext";
-import * as RootNavigation from "../routes/RootNavigation";
-import { createUser, findUser } from "../services/Users";
-import { idGenerator } from "../services/idGenerator";
+import { DebugInstructions } from "react-native/Libraries/NewAppScreen";
+import { useInput } from "../hooks/useInput";
+import {
+  createProduct,
+  deleteProduct,
+  findProductById,
+  getAllProducts,
+} from "../services/Product";
 
 export const ProductContext = createContext({});
 
-export const productContext = ({ children }: any) => {
-  
+export const ProductContextProvider = ({ children }: any) => {
+  const [productList, setProductList] = useState([]);
+  // const [category, setCategory] = useState("");
+  // const [createdBy, setCreatedBy] = useState({});
 
-  // const {
-  //   states: { user, solicitatiosList },
-  //   handlers: { handleSolicitations, handleGetAllUsers, handleFindUser },
-  // } = useContext(UsersListContext);
+  useEffect(() => {
+    handleGetAllProducts();
+    // handleDeleteProduct("2345");
+    // handleCreateProduct({
+    //   id: "2345",
+    //   name: "xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    //   category: "Roupas",
+    //   barCode: "900909",
+    //   createdyBy: {
+    //     id: "jojp290kj3i3jo",
+    //     name: "lua",
+    //     email: "lua@deliver",
+    //     role: "User",
+    //   },
+    // });
+  }, []);
 
-  // const handleCreateProduct = (
-  //   productData: { name: string; email: string; role: string; password: string },
-  //   find: (arg0: { email: string; password: string }) => {}
-  // ) => {
-  //   find({ email: userData.email, password: userData.password });
+  const handleGetAllProducts = async () => {
+    const products = await getAllProducts();
+    const newProductList = [...productList, products];
+    setProductList(newProductList);
+  };
 
-  //   if (!products.length) {
-  //     const user = {
-  //       id: idGenerator(),
-  //       name: userData.name,
-  //       email: userData.email,
-  //       role: userData.role,
-  //       password: userData.password,
-  //     };
+  const handleCreateProduct = async (productData: {
+    id: string;
+    name: string;
+    category: string;
+    barCode: string;
+    createdyBy: {
+      id: string;
+      name: string;
+      email: string;
+      role: string;
+    };
+  }) => {
+    const product = await createProduct(productData);
 
-  //     if (user.role === "Admin") {
-  //       handleSolicitations(user);
-  //       return;
-  //     } else {
-  //       createUser(user);
-  //       handleGetAllUsers();
-  //       RootNavigation.navigate("LoginPage");
-  //       // console.log("criou", user);
-  //     }
-  //   } else {
-  //     console.log("O usuário já existe");
-  //   }
-  // };
+    console.log("produto criado!", product);
 
-  // const handleLogin = async (
-  //   credentials: { email: string; password: string },
-  //   find: (arg: string) => any
-  // ) => {
-  //   //FIX IT - ao invés de enviar a função como parâmetro, chamei ela direto por problemas do estado
-  //   const [result] = await findUser(credentials);
-  //   // console.log("53", result);
+    const newProductList = [...productList, product];
+    setProductList(newProductList);
+  };
 
-  //   if (!result.email) {
-  //     setIsAuth(false);
-  //     RootNavigation.navigate("LoginPage");
-  //     console.log("Usuário não encontrado");
-  //   } else {
-  //     setIsAuth(true);
-  //     RootNavigation.navigate("SideMenu"); //quando tiver drawer, o login precisa redirecionar pra ele, e no proprio drawer colocamos a pagina inicial a qual queremos
-  //     console.log("login realizado com sucesso");
-  //   }
-  // };
+  const handleDeleteProduct = async (id: string) => {
+    await deleteProduct(id);
+  };
 
-  // const handleLogout = () => {
-  //   setIsAuth(false);
-  //   RootNavigation.navigate("LoginPage");
-  // };
-
-  // const states = { isAuth, setIsAuth };
-
-  // const handlers = {
-  //   handleSignIn,
-  //   handleLogin,
-  //   handleLogout,
-  // };
+  const data = {
+    states: { productList },
+    setters: { setProductList },
+    handlers: {
+      handleCreateProduct,
+      handleGetAllProducts,
+      handleDeleteProduct,
+    },
+  };
 
   return (
-
-    // FIX IT - colocar valores certos no value
-    <ProductContext.Provider value={'valor'}>
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
   );
 };
