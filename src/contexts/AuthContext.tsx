@@ -18,31 +18,44 @@ export const Auth = ({ children }: any) => {
   } = useContext(UsersListContext);
 
   const handleSignIn = (
-    userData: { name: string; email: string; role: string; password: string },
+    userData: {
+      name: string;
+      email: string;
+      role: string;
+      password: string;
+      confirmPassword: string;
+    },
     find: (arg0: { email: string; password: string }) => {}
   ) => {
-    find({ email: userData.email, password: userData.password });
-
-    if (!user.length) {
-      const user = {
-        id: idGenerator(),
-        name: userData.name,
-        email: userData.email,
-        role: userData.role,
-        password: userData.password,
-      };
-
-      if (user.role === "Admin") {
-        handleSolicitations(user);
-        return;
-      } else {
-        createUser(user);
-        handleGetAllUsers();
-        RootNavigation.navigate("LoginPage");
-        // console.log("criou", user);
-      }
+    //verifica se os passwords são iguais
+    if (userData.password !== userData.confirmPassword) {
+      console.log("Sas senhas não correspondem");
     } else {
-      console.log("O usuário já existe");
+      //se as senhas forem iguais, procura se o usuário já existe
+      find({ email: userData.email, password: userData.password });
+      //se não tiver um usuário existente ele cria um novo
+      if (!user.length) {
+        const user = {
+          id: idGenerator(),
+          name: userData.name,
+          email: userData.email,
+          role: userData.role,
+          password: userData.password,
+        };
+
+        //se o role escolhido for admin, tem que pedir confirmação
+        if (user.role === "Admin") {
+          handleSolicitations(user);
+          return;
+        } else {
+          createUser(user);
+          handleGetAllUsers();
+          RootNavigation.navigate("LoginPage");
+          // console.log("criou", user);
+        }
+      } else {
+        console.log("O usuário já existe");
+      }
     }
   };
 

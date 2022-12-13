@@ -12,7 +12,7 @@ export const BarCodeScannerComponent = () => {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  console.log(hasPermission, scanned);
+  console.log("Código scaneado", hasPermission, scanned);
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -25,15 +25,15 @@ export const BarCodeScannerComponent = () => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert(`Código ${data} scaneado com sucesso`);
     console.log("Barcode:", type, "Data:", data);
   };
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
+    return <Text>Solicitando permissão da câmera...</Text>;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>Permita acesso à câmera</Text>;
   }
 
   return (

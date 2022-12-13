@@ -50,7 +50,7 @@ export default function RegisterProduct({
               onPress: () => setCategory("Eletrônicos"),
             },
           ]}
-          title={"Selecione a categoria"}
+          title={!category ? "Selecione a categoria" : category}
           role={category}
         />
         {/* <Button onPress={() => setActivateBarScan}>a</Button> */}
@@ -73,7 +73,7 @@ export default function RegisterProduct({
         >
           Criar
         </Button> */}
-        <Button onPress={() => handleLogout()}>Logout</Button>
+        <Button>Cadastrar</Button>
       </View>
     </>
   );

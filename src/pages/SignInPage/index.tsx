@@ -60,7 +60,9 @@ export default function SignInPage({
       />
       <Button
         buttonText="Cadastrar"
-        onPress={() => handleSignIn({ email, password, role }, findUser)}
+        onPress={() =>
+          handleSignIn({ email, password, confirmPassword, role }, findUser)
+        }
       />
     </View>
   );

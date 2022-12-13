@@ -8,17 +8,17 @@ export const Select = ({ title, data, role }: SelectProps) => {
 
   const handlePress = () => setExpanded(!expanded);
 
-  console.log(role);
-
   return (
     <List.Section>
       <List.Accordion title={title} expanded={expanded} onPress={handlePress}>
-        
         {data.map((item: any) => (
           <List.Item
             key={item.name}
             title={item.name}
-            onPress={item.onPress}
+            onPress={() => {
+              item.onPress();
+              setExpanded(!expanded);
+            }}
             right={
               //FIX IT - mudar role para selecterOption
               item.name === role
