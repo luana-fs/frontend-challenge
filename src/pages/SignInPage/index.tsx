@@ -24,8 +24,6 @@ export default function SignInPage({
   const { colors } = useTheme();
   const style = styles(colors);
 
-  console.log("role", role);
-
   return (
     <View style={style.container}>
       <Title text={"Cadastre-se"} />

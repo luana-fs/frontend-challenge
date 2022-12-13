@@ -5,4 +5,5 @@ export type InputProps = {
   placeholder?: string;
   value: string;
   onChange?: (arg0: {}) => void;
+  flat?: boolean;
 };

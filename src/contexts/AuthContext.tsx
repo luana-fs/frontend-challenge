@@ -51,7 +51,6 @@ export const Auth = ({ children }: any) => {
           createUser(user);
           handleGetAllUsers();
           RootNavigation.navigate("LoginPage");
-          // console.log("criou", user);
         }
       } else {
         console.log("O usuário já existe");

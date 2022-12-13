@@ -1,6 +1,12 @@
 import React from "react";
 import { View } from "react-native";
-import { Button, Headline, useTheme } from "react-native-paper";
+import {
+  Button,
+  Headline,
+  useTheme,
+  Text,
+  TextInput,
+} from "react-native-paper";
 import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -11,12 +17,13 @@ import { styles } from "./styles";
 export default function RegisterProduct({
   data: {
     contexts: { productContext, authContext },
-    states: { productName, barCode, category },
+    states: { productName, barCode, category, barCodeScanned },
     setters: {
       setCategory,
       setCreatedBy,
       onChangeProductName,
       onChangeBarCode,
+      setBarCodeScan,
     },
   },
 }: any) {
@@ -30,6 +37,8 @@ export default function RegisterProduct({
 
   const { colors } = useTheme();
   const style = styles(colors);
+
+  console.log("40", barCodeScanned);
 
   return (
     <>
@@ -54,7 +63,26 @@ export default function RegisterProduct({
           role={category}
         />
         {/* <Button onPress={() => setActivateBarScan}>a</Button> */}
-        {productName && category ? <BarCodeScannerComponent /> : null}
+        {productName && category ? (
+          <>
+            <BarCodeScannerComponent setBarCodeScan={setBarCodeScan} />
+            <Text>Ou digite o código</Text>
+
+            <Input
+              textLabel="Digite o código"
+              //fix it - depois de scaneado não podemos mudar o codigo
+              value={barCode ? barCode : barCodeScanned}
+              onChange={onChangeBarCode}
+              keyboardType="numeric"
+              multiline={true}
+              // numberOfLines={3}
+              underlineStyle={"red"}
+              outlineStyle={{ borderColor: "red" }}
+              flat
+            />
+          </>
+        ) : null}
+
         {/* <Button
           onPress={() =>
             handleCreateProduct({

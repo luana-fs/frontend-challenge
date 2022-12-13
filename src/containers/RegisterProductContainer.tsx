@@ -16,10 +16,9 @@ export function RegisterProductContainer() {
   const productContext = useContext(ProductContext);
   const authContext = useContext(AuthContext);
 
-  console.log("USHDUSHD", productContext.handlers);
-
   const { value: productName, onChange: onChangeProductName } = useInput("");
   const { value: barCode, onChange: onChangeBarCode } = useInput("");
+  const [barCodeScanned, setBarCodeScan] = useState("");
   const [category, setCategory] = useState("");
   const [createdBy, setCreatedBy] = useState({});
 
@@ -52,12 +51,13 @@ export function RegisterProductContainer() {
 
   const data = {
     contexts: { productContext, authContext },
-    states: { productName, barCode, category },
+    states: { productName, barCode, category, barCodeScanned },
     setters: {
       setCategory,
       setCreatedBy,
       onChangeProductName,
       onChangeBarCode,
+      setBarCodeScan,
     },
   };
 

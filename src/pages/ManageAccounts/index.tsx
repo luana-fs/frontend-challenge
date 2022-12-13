@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   Button,
   Headline,
@@ -58,11 +58,10 @@ export default function ManageAccounts() {
   return (
     <>
       <Header title={"Dashboard"} goBack />
-      <View style={style.container}>
+      <ScrollView style={style.container}>
         <Headline>Gerenciar contas</Headline>
         {renderAccountsList}
-        <Button onPress={() => handleLogout()}>Logout</Button>
-      </View>
+      </ScrollView>
     </>
   );
 }
