@@ -43,7 +43,7 @@ export const ProductContextProvider = ({ children }: any) => {
     name: string;
     category: string;
     barCode: string;
-    createdyBy: {
+    createdBy: {
       id: string;
       name: string;
       email: string;

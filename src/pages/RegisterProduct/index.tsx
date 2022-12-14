@@ -11,6 +11,7 @@ import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
+import { navigate } from "../../routes/RootNavigation";
 
 import { styles } from "./styles";
 
@@ -19,20 +20,14 @@ export default function RegisterProduct({
     contexts: { productContext, authContext },
     states: { productName, category, barCodeScanned },
     setters: { setCategory, setCreatedBy, onChangeProductName, setBarCodeScan },
+    handlers: { createProduct },
   },
+  ...rest
 }: any) {
-  const {
-    handlers: { handleGetAllProducts, handleCreateProduct },
-  } = productContext;
-
-  const {
-    handlers: { handleLogout },
-  } = authContext;
-
   const { colors } = useTheme();
   const style = styles(colors);
 
-  console.log("40", barCodeScanned);
+  console.log(rest);
 
   return (
     <>
@@ -56,7 +51,7 @@ export default function RegisterProduct({
           title={!category ? "Selecione a categoria" : category}
           role={category}
         />
-        {/* <Button onPress={() => setActivateBarScan}>a</Button> */}
+
         {productName && category ? (
           <>
             <BarCodeScannerComponent setBarCodeScan={setBarCodeScan} />
@@ -64,12 +59,10 @@ export default function RegisterProduct({
 
             <Input
               textLabel="Digite o código"
-              //fix it - depois de scaneado não podemos mudar o codigo
               value={barCodeScanned}
               onChange={(target) => setBarCodeScan(target.text)}
-              keyboardType="numeric"
+              keyboardType={"numeric"}
               multiline={true}
-              // numberOfLines={3}
               underlineStyle={"red"}
               outlineStyle={{ borderColor: "red" }}
               flat
@@ -77,25 +70,14 @@ export default function RegisterProduct({
           </>
         ) : null}
 
-        {/* <Button
-          onPress={() =>
-            handleCreateProduct({
-              id: "2345",
-              name: "tomate",
-              category: "Roupas",
-              barCode: "900909",
-              createdyBy: {
-                id: "jojp290kj3i3jo",
-                name: "lua",
-                email: "lua@deliver",
-                role: "User",
-              },
-            })
-          }
+        <Button
+          onPress={() => {
+            createProduct();
+            navigate("Dashboard");
+          }}
         >
-          Criar
-        </Button> */}
-        <Button>Cadastrar</Button>
+          Cadastrar
+        </Button>
       </View>
     </>
   );

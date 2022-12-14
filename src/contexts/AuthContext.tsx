@@ -9,6 +9,7 @@ export const AuthContext = createContext({});
 
 export const Auth = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
 
   console.log("logado:", isAuth);
 
@@ -63,10 +64,16 @@ export const Auth = ({ children }: any) => {
     find: (arg: string) => any
   ) => {
     //FIX IT - ao invés de enviar a função como parâmetro, chamei ela direto por problemas do estado
-    const [result] = await findUser(credentials);
-    // console.log("53", result);
+    const [user] = await findUser(credentials);
+    setUserInfo({
+      ...userInfo,
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+    });
 
-    if (!result.email) {
+    if (!user.email) {
       setIsAuth(false);
       RootNavigation.navigate("LoginPage");
       console.log("Usuário não encontrado");
@@ -82,7 +89,8 @@ export const Auth = ({ children }: any) => {
     RootNavigation.navigate("LoginPage");
   };
 
-  const states = { isAuth, setIsAuth };
+  //FIX IT// colocar tudo em um objeto DATA
+  const states = { isAuth, setIsAuth, userInfo };
 
   const handlers = {
     handleSignIn,

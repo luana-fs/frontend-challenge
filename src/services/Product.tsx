@@ -15,7 +15,7 @@ export const createProduct = async (body: {
   name: string;
   category: string;
   barCode: string;
-  createdyBy: {
+  createdBy: {
     id: string;
     name: string;
     email: string;

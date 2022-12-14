@@ -63,7 +63,7 @@ export const server = () =>
               name: "Camiseta Adeus Tokyo",
               category: "Roupas",
               barCode: "9039908202",
-              createdyBy: {
+              createdBy: {
                 id: "2",
                 name: "Lígia",
                 email: "ligia@deliver.com",
