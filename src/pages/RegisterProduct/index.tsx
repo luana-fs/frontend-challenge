@@ -17,14 +17,8 @@ import { styles } from "./styles";
 export default function RegisterProduct({
   data: {
     contexts: { productContext, authContext },
-    states: { productName, barCode, category, barCodeScanned },
-    setters: {
-      setCategory,
-      setCreatedBy,
-      onChangeProductName,
-      onChangeBarCode,
-      setBarCodeScan,
-    },
+    states: { productName, category, barCodeScanned },
+    setters: { setCategory, setCreatedBy, onChangeProductName, setBarCodeScan },
   },
 }: any) {
   const {
@@ -71,8 +65,8 @@ export default function RegisterProduct({
             <Input
               textLabel="Digite o código"
               //fix it - depois de scaneado não podemos mudar o codigo
-              value={barCode ? barCode : barCodeScanned}
-              onChange={onChangeBarCode}
+              value={barCodeScanned}
+              onChange={(target) => setBarCodeScan(target.text)}
               keyboardType="numeric"
               multiline={true}
               // numberOfLines={3}
