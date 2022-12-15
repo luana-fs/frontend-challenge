@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { UsersContext, UsersListContext } from "../contexts/UsersContext";
 import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
+import { createProduct } from "../services/Product";
 import { createUser } from "../services/Users";
 
 export function LoginContainer() {
@@ -19,6 +20,18 @@ export function LoginContainer() {
       email: "luana@deliver.com",
       role: "SuperAdmin",
       password: "bananinha",
+    });
+    createProduct({
+      id: "1",
+      name: "Camiseta Adeus Tokyo",
+      category: "Roupas",
+      barCode: "9039908202",
+      createdBy: {
+        id: "2",
+        name: "Lígia",
+        email: "ligia@deliver.com",
+        role: "Admin",
+      },
     });
   }, []);
 

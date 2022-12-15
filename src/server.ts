@@ -55,23 +55,7 @@ export const server = () =>
 
       //pegar todos produtos
       this.get("/products", (schema) => {
-        return {
-          data: [
-            ...schema.products.all().models,
-            {
-              id: "1",
-              name: "Camiseta Adeus Tokyo",
-              category: "Roupas",
-              barCode: "9039908202",
-              createdBy: {
-                id: "2",
-                name: "Lígia",
-                email: "ligia@deliver.com",
-                role: "Admin",
-              },
-            },
-          ],
-        };
+        return schema.products.all();
       });
 
       //criar produto

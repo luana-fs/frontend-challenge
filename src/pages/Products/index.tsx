@@ -1,10 +1,19 @@
 import React from "react";
 import { useContext } from "react";
-import { View } from "react-native";
-import { Button, Headline, useTheme } from "react-native-paper";
+import { ScrollView, View } from "react-native";
+import {
+  Button,
+  Card,
+  Headline,
+  IconButton,
+  List,
+  Paragraph,
+  useTheme,
+} from "react-native-paper";
 import { Header } from "../../components/Header";
 import { Title } from "../../components/Title";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import { UsersListContext } from "../../contexts/UsersContext";
 
 import * as RootNavigation from "../../routes/RootNavigation";
@@ -14,15 +23,36 @@ export default function Products() {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const { handleLogout } = useContext(AuthContext);
+  const {
+    states: { productList },
+  } = useContext(ProductContext);
+  console.log("walk", productList);
+
+  const renderItemList = productList.map((product) => {
+    return (
+      <Card key={product.id}>
+        <Card.Title
+          title={product.name}
+          subtitle={`Código: ${product.barCode} ${"\n"} Categoria: ${
+            product.category
+          }`}
+        />
+
+        <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+        <Card.Actions>
+          <Button>Ver detalhes</Button>
+        </Card.Actions>
+      </Card>
+    );
+  });
 
   return (
     <>
       <Header title={"Dashboard"} goBack />
-      <View style={style.container}>
+      <ScrollView style={style.container}>
         <Headline>Produtos</Headline>
-        <Button onPress={() => handleLogout()}>Logout</Button>
-      </View>
+        {renderItemList}
+      </ScrollView>
     </>
   );
 }

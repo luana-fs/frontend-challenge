@@ -13,6 +13,7 @@ import SignInPage from "../pages/SignInPage";
 import { navigationRef } from "./RootNavigation";
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { SignInContainer } from "../containers/SignInContainer";
+import Products from "../pages/Products";
 
 export const Routes = (props: any) => {
   const isReactPaperTheme: Theme = ReactPaperTheme();
@@ -25,6 +26,9 @@ export const Routes = (props: any) => {
       ref={navigationRef}
       theme={isReactPaperTheme.dark ? DarkTheme : DefaultTheme}
     >
+      {/* <Stack.Navigator>
+        <Stack.Screen name="Products" component={Products} />
+      </Stack.Navigator> */}
       <Stack.Navigator
         initialRouteName={isAuth ? "RegisterProduct" : "LoginPage"}
         // initialRouteName={isAuth ? "SideMenu" : "LoginPage"}

@@ -33,7 +33,8 @@ export const ProductContextProvider = ({ children }: any) => {
   }, []);
 
   const handleGetAllProducts = async () => {
-    const products = await getAllProducts();
+    const [products] = await getAllProducts();
+    console.log("37", products);
     const newProductList = [...productList, products];
     setProductList(newProductList);
   };
