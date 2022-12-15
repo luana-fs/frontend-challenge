@@ -9,9 +9,14 @@ import ManageAccounts from "../../pages/ManageAccounts";
 import Products from "../../pages/Products";
 import { useNavigation } from "@react-navigation/native";
 import { RegisterProductContainer } from "../../containers/RegisterProductContainer";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
+
+  const {
+    states: { isAuth, userInfo },
+  } = React.useContext(AuthContext);
 
   return (
     <Drawer.Navigator
@@ -35,48 +40,57 @@ export const SideMenu = () => {
         }}
       />
 
-      <Drawer.Screen
-        name="Solicitações"
-        component={Solicitations}
-        options={{
-          drawerIcon: () => (
-            <Avatar.Icon
-              size={24}
-              icon="account-plus"
-              style={{ backgroundColor: "transparent" }}
-              size={32}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Cadastrar produto"
-        component={RegisterProductContainer}
-        options={{
-          drawerIcon: () => (
-            <Avatar.Icon
-              size={24}
-              icon="barcode-scan"
-              style={{ backgroundColor: "transparent" }}
-              size={32}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Gerenciar contas"
-        component={ManageAccounts}
-        options={{
-          drawerIcon: () => (
-            <Avatar.Icon
-              size={24}
-              icon="account-group"
-              style={{ backgroundColor: "transparent" }}
-              size={32}
-            />
-          ),
-        }}
-      />
+      {userInfo.role === "SuperAdmin" ? (
+        <Drawer.Screen
+          name="Solicitações"
+          component={Solicitations}
+          options={{
+            drawerIcon: () => (
+              <Avatar.Icon
+                size={24}
+                icon="account-plus"
+                style={{ backgroundColor: "transparent" }}
+                size={32}
+              />
+            ),
+          }}
+        />
+      ) : null}
+
+      {userInfo.role === "SuperAdmin" || "Admin" ? (
+        <Drawer.Screen
+          name="Cadastrar produto"
+          component={RegisterProductContainer}
+          options={{
+            drawerIcon: () => (
+              <Avatar.Icon
+                size={24}
+                icon="barcode-scan"
+                style={{ backgroundColor: "transparent" }}
+                size={32}
+              />
+            ),
+          }}
+        />
+      ) : null}
+
+      {userInfo.role === "SuperAdmin" ? (
+        <Drawer.Screen
+          name="Gerenciar contas"
+          component={ManageAccounts}
+          options={{
+            drawerIcon: () => (
+              <Avatar.Icon
+                size={24}
+                icon="account-group"
+                style={{ backgroundColor: "transparent" }}
+                size={32}
+              />
+            ),
+          }}
+        />
+      ) : null}
+
       <Drawer.Screen
         name="Produtos"
         component={Products}
