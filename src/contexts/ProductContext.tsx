@@ -18,18 +18,18 @@ export const ProductContextProvider = ({ children }: any) => {
   useEffect(() => {
     handleGetAllProducts();
     // handleDeleteProduct("2345");
-    // handleCreateProduct({
-    //   id: "2345",
-    //   name: "xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    //   category: "Roupas",
-    //   barCode: "900909",
-    //   createdyBy: {
-    //     id: "jojp290kj3i3jo",
-    //     name: "lua",
-    //     email: "lua@deliver",
-    //     role: "User",
-    //   },
-    // });
+    handleCreateProduct({
+      id: "234225",
+      name: "bolsa",
+      category: "Roupas",
+      barCode: "900909",
+      createdyBy: {
+        id: "jojp290kj3i3jo",
+        name: "lua",
+        email: "lua@deliver",
+        role: "User",
+      },
+    });
   }, []);
 
   const handleGetAllProducts = async () => {
