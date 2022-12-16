@@ -48,6 +48,12 @@ export const server = () =>
         return schema.users.create(body);
       });
 
+      //editar usuário
+      this.put("/users/:id", (schema, request) => {
+        let body = JSON.parse(request.requestBody);
+        return schema.users.find(request.params.id).update(body);
+      });
+
       //delete user by Id
       this.delete("/users/:id", (schema, request) => {
         return schema.users.find(request.params.id).destroy();

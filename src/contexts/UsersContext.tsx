@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
+import { editUser } from "../services/Users";
 import {
   createUser,
   getAllUsers,
@@ -13,19 +14,26 @@ export const UsersContext = ({ children }: any) => {
   const [solicitationsList, setSolicitationsList] = useState([]);
   const [user, setUser] = useState([]);
 
-  // useEffect(() => {
-  //   handleGetAllUsers();
-  //   // getAllUsers();
-  //   // findUserById("52");
-  //   // findUser("raul@deliver.com");
-  //   // createUser({
-  //   //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
-  //   //   name: "jesus",
-  //   //   email: "jesus@deliver.com",
-  //   //   role: "User",
-  //   //   password: "azul",
-  //   // });
-  // }, []);
+  useEffect(() => {
+    // editUser("1", {
+    //   email: "luana@deliver.com",
+    //   id: "1",
+    //   name: "Luaninha",
+    //   password: "bananinha",
+    //   role: "SuperAdmin",
+    // });
+    // handleGetAllUsers();
+    // getAllUsers();
+    // findUserById("52");
+    // findUser("raul@deliver.com");
+    // createUser({
+    //   id: idGenerator(), //NUNCA COLOQUE IDS IGUAIS NA HR DE CRIAR! e ele só chama quem foi criado pelo mirage!
+    //   name: "jesus",
+    //   email: "jesus@deliver.com",
+    //   role: "User",
+    //   password: "azul",
+    // });
+  }, []);
 
   const handleGetAllUsers = async () => {
     const usersList = await getAllUsers();
@@ -82,6 +90,11 @@ export const UsersContext = ({ children }: any) => {
     console.log("Solicitação aceita com sucesso!");
   };
 
+  const handleEditUser = async (id, user) => {
+    const result = await editUser(id, user);
+    console.log("editou o usuário", result);
+  };
+
   const states = { usersList, user, setUsersList, setUser, solicitationsList };
 
   const handlers = {
@@ -91,6 +104,7 @@ export const UsersContext = ({ children }: any) => {
     handleFindUser,
     handleSolicitations,
     handleAcceptSolicitation,
+    handleEditUser,
   };
 
   return (

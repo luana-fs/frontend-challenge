@@ -5,11 +5,11 @@ import DashboardPage from "../../pages/DashboardPage";
 import { CustomDrawer } from "./CustomDrawer";
 import Solicitations from "../../pages/Solicitations";
 import RegisterProduct from "../../pages/RegisterProduct";
-import ManageAccounts from "../../pages/ManageAccounts";
 import Products from "../../pages/Products";
 import { useNavigation } from "@react-navigation/native";
 import { RegisterProductContainer } from "../../containers/RegisterProductContainer";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ManageAccountsContainer } from "../../containers/ManageAccountsContainer";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
@@ -77,7 +77,7 @@ export const SideMenu = () => {
       {userInfo.role === "SuperAdmin" ? (
         <Drawer.Screen
           name="Gerenciar contas"
-          component={ManageAccounts}
+          component={ManageAccountsContainer}
           options={{
             drawerIcon: () => (
               <Avatar.Icon

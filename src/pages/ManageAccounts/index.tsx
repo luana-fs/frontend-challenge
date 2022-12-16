@@ -17,19 +17,25 @@ import { UsersListContext } from "../../contexts/UsersContext";
 import * as RootNavigation from "../../routes/RootNavigation";
 import { styles } from "./styles";
 
-export default function ManageAccounts() {
+export default function ManageAccounts({
+  data: {
+    states: { usersList, role },
+    setters: { onChangeRole },
+    handlers: { handleEditUser },
+  },
+}: any) {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const {
-    states: { usersList },
-    handlers: { handleGetAllUsers },
-  } = useContext(UsersListContext);
-  console.log("Lista de usurarios", usersList);
+  // const {
+  //   states: { usersList },
+  //   handlers: { handleGetAllUsers },
+  // } = useContext(UsersListContext);
+  // console.log("Lista de usurarios", usersList);
 
-  useEffect(() => {
-    handleGetAllUsers();
-  }, []);
+  // useEffect(() => {
+  //   handleGetAllUsers();
+  // }, []);
 
   const renderAccountsList = usersList.map((item) => {
     return (
@@ -49,7 +55,10 @@ export default function ManageAccounts() {
               <IconButton
                 icon="account-edit"
                 size={28}
-                onPress={() => console.log("editar")}
+                //FIX IT - colocar input ao expandir a lista pra pegar novos valores
+                onPress={() =>
+                  handleEditUser(item.id, { ...item, role: "bananinha" })
+                }
               />
             </>
           )}

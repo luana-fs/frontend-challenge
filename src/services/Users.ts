@@ -56,3 +56,18 @@ export const findUser = async (credentials: {
     console.log("findUser error", error);
   }
 };
+
+export const editUser = async (
+  id: string,
+  body: {
+    email: string;
+    id: string;
+    name: string;
+    password: string;
+    role: string;
+  }
+) => {
+  const res = await axios.put(`/users/${id}`, body);
+  // console.log("usuario editado", res.data);
+  return res.data;
+};
