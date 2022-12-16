@@ -29,6 +29,7 @@ export const UsersContext = ({ children }: any) => {
 
   const handleGetAllUsers = async () => {
     const usersList = await getAllUsers();
+    console.log("usersList request", usersList);
     setUsersList(usersList);
   };
 

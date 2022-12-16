@@ -1,13 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import {
-  Button,
-  Headline,
-  useTheme,
-  Text,
-  TextInput,
-} from "react-native-paper";
+import { Headline, useTheme, Text, TextInput } from "react-native-paper";
 import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
+import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
@@ -26,8 +21,6 @@ export default function RegisterProduct({
 }: any) {
   const { colors } = useTheme();
   const style = styles(colors);
-
-  console.log(rest);
 
   return (
     <>
@@ -70,14 +63,15 @@ export default function RegisterProduct({
           </>
         ) : null}
 
-        <Button
-          onPress={() => {
-            createProduct();
-            navigate("Dashboard");
-          }}
-        >
-          Cadastrar
-        </Button>
+        {productName && category && barCodeScanned ? (
+          <Button
+            buttonText="Cadastrar"
+            onPress={() => {
+              createProduct();
+              navigate("Dashboard");
+            }}
+          />
+        ) : null}
       </View>
     </>
   );

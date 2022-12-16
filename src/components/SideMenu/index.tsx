@@ -22,7 +22,7 @@ export const SideMenu = () => {
     <Drawer.Navigator
       useLegacyImplementation
       screenOptions={{ headerShown: false }}
-      initialRouteName="DashboardPage"
+      initialRouteName="Dashboard"
       drawerContent={(props: any) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
@@ -59,7 +59,7 @@ export const SideMenu = () => {
 
       {userInfo.role === "SuperAdmin" || "Admin" ? (
         <Drawer.Screen
-          name="Cadastrar produto"
+          name="Cadastrar Produto"
           component={RegisterProductContainer}
           options={{
             drawerIcon: () => (

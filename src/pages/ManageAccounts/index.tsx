@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { ScrollView, View } from "react-native";
 import {
@@ -21,12 +21,15 @@ export default function ManageAccounts() {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const { handleLogout } = useContext(AuthContext);
-
   const {
     states: { usersList },
+    handlers: { handleGetAllUsers },
   } = useContext(UsersListContext);
-  console.log(usersList);
+  console.log("Lista de usurarios", usersList);
+
+  useEffect(() => {
+    handleGetAllUsers();
+  }, []);
 
   const renderAccountsList = usersList.map((item) => {
     return (
@@ -39,7 +42,7 @@ export default function ManageAccounts() {
       >
         <List.Item
           title={item.name}
-          description={item.email}
+          description={`${item.email} \n${item.role}`}
           left={(props) => <List.Icon {...props} icon="account" />}
           right={(props) => (
             <>

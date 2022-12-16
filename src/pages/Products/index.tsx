@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { ScrollView, View } from "react-native";
-import { Button, Card, Headline, useTheme, Text } from "react-native-paper";
+import {
+  Button as PaperButton,
+  Card,
+  Headline,
+  useTheme,
+  Text,
+  Subheading,
+} from "react-native-paper";
+import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { SearchBar } from "../../components/SearchBar";
 
 import { ProductContext } from "../../contexts/ProductContext";
+import { navigate } from "../../routes/RootNavigation";
 
 import { styles } from "./styles";
 
@@ -38,18 +47,24 @@ export default function Products() {
 
             <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
             <Card.Actions>
-              <Button>Ver detalhes</Button>
+              <PaperButton>Ver detalhes</PaperButton>
             </Card.Actions>
           </Card>
         );
       })
   ) : (
-    <Text>Não há produtos</Text>
+    <>
+      <Subheading>Cadastre o primeiro produto!</Subheading>
+      <Button
+        buttonText={"Cadastrar"}
+        onPress={() => navigate("Cadastrar Produto")}
+      />
+    </>
   );
 
   return (
     <>
-      <Header title={"Dashboard"} goBack />
+      <Header title={"Cadastrar Produto"} goBack />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ScrollView style={style.container}>
         <Headline>Produtos</Headline>
