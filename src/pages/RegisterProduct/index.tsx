@@ -68,7 +68,7 @@ export default function RegisterProduct({
             buttonText="Cadastrar"
             onPress={() => {
               createProduct();
-              navigate("Dashboard");
+              navigate("Produtos");
             }}
           />
         ) : null}

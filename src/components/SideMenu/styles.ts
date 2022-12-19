@@ -3,6 +3,9 @@ import { StatusBar } from "react-native";
 
 export const styles = (props: any) =>
   StyleSheet.create({
+    profile: {
+      padding: 20,
+    },
     container: {
       marginTop: StatusBar.currentHeight,
       marginBottom: 0,
@@ -11,4 +14,5 @@ export const styles = (props: any) =>
       backgroundColor: props.background,
       paddingTop: 10,
     },
+    userInfoContainer: { marginTop: 20 },
   });

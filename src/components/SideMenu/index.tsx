@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { RegisterProductContainer } from "../../containers/RegisterProductContainer";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ManageAccountsContainer } from "../../containers/ManageAccountsContainer";
+import { ProductContainer } from "../../containers/ProductContainer";
 
 export const SideMenu = () => {
   const Drawer: any = createDrawerNavigator();
@@ -17,6 +18,9 @@ export const SideMenu = () => {
   const {
     states: { isAuth, userInfo },
   } = React.useContext(AuthContext);
+
+  // const { colors } = useTheme();
+  // const style = styles(colors);
 
   return (
     <Drawer.Navigator
@@ -93,7 +97,7 @@ export const SideMenu = () => {
 
       <Drawer.Screen
         name="Produtos"
-        component={Products}
+        component={ProductContainer}
         options={{
           drawerIcon: () => (
             <Avatar.Icon

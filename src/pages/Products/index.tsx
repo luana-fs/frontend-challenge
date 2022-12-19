@@ -63,7 +63,7 @@ export default function Products({
 
   return (
     <>
-      <Header title={"Cadastrar Produto"} goBack />
+      <Header title={"Produtos"} goBack />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ScrollView style={style.container}>
         <Headline>Produtos</Headline>
