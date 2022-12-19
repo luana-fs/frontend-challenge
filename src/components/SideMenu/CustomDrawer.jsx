@@ -11,7 +11,9 @@ import { getDeviceDimensions } from "../../hooks/getDeviceDimensions";
 
 export const CustomDrawer = (props) => {
   const { height } = getDeviceDimensions();
-  const { handleLogout } = useContext(AuthContext);
+  const {
+    handlers: { handleLogout },
+  } = useContext(AuthContext);
   return (
     <DrawerContentScrollView>
       <DrawerItemList {...props} />

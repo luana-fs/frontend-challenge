@@ -14,14 +14,11 @@ export default function DashboardPage() {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const { handlers } = useContext(AuthContext);
-
   return (
     <>
       <Header title={"Dashboard"} goBack />
       <View style={style.container}>
         <Headline>Olá, Luana</Headline>
-        <Button onPress={() => handlers.handleLogout()}>Logout</Button>
       </View>
     </>
   );

@@ -13,7 +13,7 @@ export const Header = ({ title, goBack, handleMore }: HeaderProps) => {
   return (
     <Appbar.Header>
       {goBack ? <Appbar.BackAction onPress={_goBack} /> : null}
-      <Appbar.Content title={title} titleStyle={styles.textToCenter} />
+      <Appbar.Content title={title} />
       {/* <Appbar.Action icon="magnify" onPress={_handleSearch} /> */}
       {handleMore ? (
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
