@@ -12,13 +12,6 @@ export const server = () =>
           data: [
             ...schema.users.all().models,
             {
-              id: "1",
-              name: "Luana Farias",
-              email: "luana@deliver.com",
-              role: "SuperAdmin",
-              password: "bananinha",
-            },
-            {
               id: "2",
               name: "Lígia",
               email: "ligia@deliver.com",

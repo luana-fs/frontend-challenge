@@ -27,12 +27,6 @@ export default function ManageAccounts({
   const { colors } = useTheme();
   const style = styles(colors);
 
-  // const {
-  //   states: { usersList },
-  //   handlers: { handleGetAllUsers },
-  // } = useContext(UsersListContext);
-  // console.log("Lista de usurarios", usersList);
-
   // useEffect(() => {
   //   handleGetAllUsers();
   // }, []);
@@ -47,6 +41,7 @@ export default function ManageAccounts({
         }}
       >
         <List.Item
+          key={item.id}
           title={item.name}
           description={`${item.email} \n${item.role}`}
           left={(props) => <List.Icon {...props} icon="account" />}
