@@ -18,15 +18,14 @@ import { navigate } from "../../routes/RootNavigation";
 
 import { styles } from "./styles";
 
-export default function Products() {
-  const [searchQuery, setSearchQuery] = useState("");
-
+export default function Products({
+  data: {
+    states: { searchQuery, productList },
+    setters: { setSearchQuery },
+  },
+}: any) {
   const { colors } = useTheme();
   const style = styles(colors);
-
-  const {
-    states: { productList },
-  } = useContext(ProductContext);
 
   const renderItemList = productList.length ? (
     productList
