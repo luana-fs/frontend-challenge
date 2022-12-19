@@ -5,6 +5,7 @@ import ManageAccounts from "../pages/ManageAccounts";
 
 export function ManageAccountsContainer() {
   const { value: role, onChange: onChangeRole } = useInput("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const {
     states: { usersList },
@@ -18,8 +19,8 @@ export function ManageAccountsContainer() {
   }, []);
 
   const data = {
-    states: { usersList, role },
-    setters: { onChangeRole },
+    states: { usersList, role, searchQuery },
+    setters: { onChangeRole, setSearchQuery },
     handlers: { handleEditUser },
   };
 
