@@ -14,8 +14,6 @@ export function ProductContainer() {
     states: { productList },
   } = useContext(ProductContext);
 
-  console.log("hhdhfud", productList);
-
   const data = {
     states: { searchQuery, productList },
     setters: {

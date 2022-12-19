@@ -6,6 +6,7 @@ import {
   findUserById,
   findUser,
 } from "../services/Users";
+import { ThemeContext } from "./ThemeContext";
 
 export const UsersListContext = createContext({});
 
