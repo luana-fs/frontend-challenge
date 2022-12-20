@@ -12,8 +12,6 @@ export function ManageAccountsContainer() {
     handlers: { handleGetAllUsers, handleEditUser },
   } = useContext(UsersListContext);
 
-  console.log("Lista de usurarios", usersList);
-
   useEffect(() => {
     handleGetAllUsers();
   }, []);

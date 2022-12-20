@@ -12,8 +12,6 @@ export const BarCodeScannerComponent = ({ setBarCodeScan }) => {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  console.log("Código scaneado", hasPermission, scanned);
-
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();

@@ -10,8 +10,6 @@ export const SwitchButton = ({ text, onPress }: any) => {
   const { colors } = useTheme();
   const style = styles(colors);
 
-  console.log("ASCORAI", colors);
-
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
     onPress && onPress();

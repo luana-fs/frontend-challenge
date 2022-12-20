@@ -39,6 +39,9 @@ export const server = () =>
 
       //delete user by Id
       this.delete("/users/:id", (schema, request) => {
+        console.log("schema", schema.users);
+        console.log("request", request.params.id);
+        console.log("achou o user", schema.users.find(request.params.id));
         return schema.users.find(request.params.id).destroy();
       });
 
@@ -61,8 +64,8 @@ export const server = () =>
 
       //delete product by Id
       this.delete("/products/:id", (schema, request) => {
-        console.log("schema", schema.products);
-        console.log("request", schema.products.find(request.params.id));
+        // console.log("schema", schema.products);
+        // console.log("request", schema.products.find(request.params.id));
         return schema.products.find(request.params.id).destroy();
       });
     },

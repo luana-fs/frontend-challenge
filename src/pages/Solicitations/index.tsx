@@ -18,7 +18,7 @@ export default function Solicitations() {
 
   const {
     states: { solicitationsList },
-    handlers: { handleAcceptSolicitation },
+    handlers: { handleAcceptSolicitation, handleDeleteSolicitation },
   } = useContext(UsersListContext);
 
   const context = useContext(UsersListContext);
@@ -43,7 +43,7 @@ export default function Solicitations() {
                 icon="close"
                 color={"red"}
                 size={20}
-                onPress={() => console.log("Pressed")}
+                onPress={() => handleDeleteSolicitation(item.id)}
               />
               <IconButton
                 icon="check"

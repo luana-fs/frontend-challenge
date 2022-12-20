@@ -6,7 +6,7 @@ export const getAllUsers = async () => {
   try {
     const res = await axios.get("/users");
     // console.log("getAllUsers success", res.data.data);
-    return res.data.data;
+    return res.data.users;
   } catch (error) {
     console.log("getAllUsers error", error);
   }
@@ -70,4 +70,14 @@ export const editUser = async (
   const res = await axios.put(`/users/${id}`, body);
   // console.log("usuario editado", res.data);
   return res.data;
+};
+
+export const deleteUser = async (id: string) => {
+  try {
+    const res = await axios.delete(`/users/${id}`);
+    console.log("Delete user success", res);
+    return res;
+  } catch (error) {
+    console.log("DeleteById error", error);
+  }
 };

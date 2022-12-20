@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
-import { editUser } from "../services/Users";
+import { deleteUser, editUser } from "../services/Users";
 import {
   createUser,
   getAllUsers,
@@ -73,7 +73,7 @@ export const UsersContext = ({ children }: any) => {
     setSolicitationsList(newSolicitationsList);
   };
 
-  const handleAcceptSolicitation = (user: {
+  const handleAcceptSolicitation = async (user: {
     id: string;
     name: string;
     email: string;
@@ -88,7 +88,17 @@ export const UsersContext = ({ children }: any) => {
     );
 
     setSolicitationsList(newSolicitationsList);
+    await createUser(user);
     console.log("Solicitação aceita com sucesso!");
+  };
+
+  const handleDeleteSolicitation = (id: string) => {
+    const newSolicitationsList = solicitationsList.filter(
+      (item) => item.id !== id
+    );
+
+    setSolicitationsList(newSolicitationsList);
+    console.log("Solicitação recusada com sucesso!");
   };
 
   const handleEditUser = async (id, user) => {
@@ -96,6 +106,7 @@ export const UsersContext = ({ children }: any) => {
     console.log("editou o usuário", result);
   };
 
+  //FIX IT - colocar tudo dentro de obj data
   const states = { usersList, user, setUsersList, setUser, solicitationsList };
 
   const handlers = {
@@ -106,6 +117,7 @@ export const UsersContext = ({ children }: any) => {
     handleSolicitations,
     handleAcceptSolicitation,
     handleEditUser,
+    handleDeleteSolicitation,
   };
 
   return (
