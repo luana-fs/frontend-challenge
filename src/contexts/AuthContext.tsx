@@ -4,12 +4,15 @@ import { UsersListContext } from "./UsersContext";
 import * as RootNavigation from "../routes/RootNavigation";
 import { createUser, findUser } from "../services/Users";
 import { idGenerator } from "../services/idGenerator";
+import { LoadingContext } from "./LoadingContext";
 
 export const AuthContext = createContext({});
 
 export const Auth = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+
+  const { loading, setLoading } = useContext(LoadingContext);
 
   console.log("logado:", isAuth);
 
@@ -63,6 +66,7 @@ export const Auth = ({ children }: any) => {
     credentials: { email: string; password: string },
     find: (arg: string) => any
   ) => {
+    setLoading(true);
     //FIX IT - ao invés de enviar a função como parâmetro, chamei ela direto por problemas do estado
     const [user] = await findUser(credentials);
     setUserInfo({
@@ -77,10 +81,12 @@ export const Auth = ({ children }: any) => {
       setIsAuth(false);
       RootNavigation.navigate("LoginPage");
       console.log("Usuário não encontrado");
+      setLoading(false);
     } else {
       setIsAuth(true);
       RootNavigation.navigate("SideMenu"); //quando tiver drawer, o login precisa redirecionar pra ele, e no proprio drawer colocamos a pagina inicial a qual queremos
       console.log("login realizado com sucesso");
+      setLoading(false);
     }
   };
 
