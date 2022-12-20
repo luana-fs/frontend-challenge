@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Avatar, useTheme as ReactPaperTheme, Text } from "react-native-paper";
+import {
+  Avatar,
+  useTheme as ReactPaperTheme,
+  Text,
+  useTheme,
+} from "react-native-paper";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DashboardPage from "../../pages/DashboardPage";
 import { CustomDrawer } from "./CustomDrawer";
@@ -19,7 +24,7 @@ export const SideMenu = () => {
     states: { isAuth, userInfo },
   } = React.useContext(AuthContext);
 
-  // const { colors } = useTheme();
+  const { colors } = useTheme();
   // const style = styles(colors);
 
   return (
@@ -36,6 +41,7 @@ export const SideMenu = () => {
           drawerIcon: () => (
             <Avatar.Icon
               size={24}
+              color={colors.onSurface}
               icon="view-dashboard"
               style={{ backgroundColor: "transparent" }}
               size={32}
@@ -52,6 +58,7 @@ export const SideMenu = () => {
             drawerIcon: () => (
               <Avatar.Icon
                 size={24}
+                color={colors.onSurface}
                 icon="account-plus"
                 style={{ backgroundColor: "transparent" }}
                 size={32}
@@ -69,6 +76,7 @@ export const SideMenu = () => {
             drawerIcon: () => (
               <Avatar.Icon
                 size={24}
+                color={colors.onSurface}
                 icon="barcode-scan"
                 style={{ backgroundColor: "transparent" }}
                 size={32}
@@ -86,6 +94,7 @@ export const SideMenu = () => {
             drawerIcon: () => (
               <Avatar.Icon
                 size={24}
+                color={colors.onSurface}
                 icon="account-group"
                 style={{ backgroundColor: "transparent" }}
                 size={32}
@@ -102,6 +111,7 @@ export const SideMenu = () => {
           drawerIcon: () => (
             <Avatar.Icon
               size={24}
+              color={colors.onSurface}
               icon="format-list-bulleted-square"
               style={{ backgroundColor: "transparent" }}
               size={32}
