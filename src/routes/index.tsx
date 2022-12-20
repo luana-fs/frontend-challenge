@@ -26,7 +26,7 @@ export const Routes = (props: any) => {
         theme={theme.dark ? DarkTheme : DefaultTheme}
       >
         <Stack.Navigator
-          initialRouteName={isAuth ? "RegisterProduct" : "LoginPage"}
+          initialRouteName={isAuth ? "DashboardPage" : "LoginPage"}
           screenOptions={{ headerShown: false }}
         >
           {isAuth ?? (

@@ -19,7 +19,7 @@ export function ManageAccountsContainer() {
   const data = {
     states: { usersList, role, searchQuery },
     setters: { onChangeRole, setSearchQuery },
-    handlers: { handleEditUser },
+    handlers: { handleEditUser, handleGetAllUsers },
   };
 
   return <ManageAccounts data={data} />;
