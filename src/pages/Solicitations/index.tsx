@@ -21,6 +21,8 @@ export default function Solicitations() {
     handlers: { handleAcceptSolicitation },
   } = useContext(UsersListContext);
 
+  const context = useContext(UsersListContext);
+
   const renderSolicitationsList = solicitationsList.map((item) => {
     return (
       <Surface
@@ -31,6 +33,7 @@ export default function Solicitations() {
         }}
       >
         <List.Item
+          key={item.id}
           title={item.name}
           description={item.email}
           left={(props) => <List.Icon {...props} icon="account" />}

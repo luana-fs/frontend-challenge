@@ -53,7 +53,7 @@ export const CustomDrawer = (props) => {
         icon={() => (
           <Avatar.Icon
             size={24}
-            color={colors.onSurface}
+            color={colors.backdrop}
             icon="logout-variant"
             style={{ backgroundColor: "transparent" }}
             size={32}

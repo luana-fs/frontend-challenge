@@ -5,17 +5,18 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
 import { Title } from "../../components/Title";
+import { navigate } from "../../routes/RootNavigation";
 import { findUser } from "../../services/Users";
 import { styles } from "./styles";
 
 export default function SignInPage({
   data: {
-    states: { email, password, confirmPassword, role },
+    states: { name, email, password, confirmPassword, role },
     setters: {
+      onChangeName,
       onChangeEmail,
       onChangePassword,
       onChangeConfirmPassword,
-      onChangeRole,
       setRole,
     },
     handlers: { handleSignIn },
@@ -28,6 +29,12 @@ export default function SignInPage({
     <View style={style.container}>
       <Title text={"Cadastre-se"} />
       <Input
+        textLabel="Nome"
+        placeholder="Digite seu nome"
+        onChange={onChangeName}
+        value={name}
+      />
+      <Input
         textLabel="E-mail"
         placeholder="Digite seu e-mail"
         onChange={onChangeEmail}
@@ -35,6 +42,7 @@ export default function SignInPage({
       />
       <Input
         password
+        textLabel="Senha"
         placeholder="Digite sua senha"
         onChange={onChangePassword}
         value={password}
@@ -58,9 +66,13 @@ export default function SignInPage({
       />
       <Button
         buttonText="Cadastrar"
-        onPress={() =>
-          handleSignIn({ email, password, confirmPassword, role }, findUser)
-        }
+        onPress={() => {
+          handleSignIn(
+            { name, email, password, confirmPassword, role },
+            findUser
+          );
+          navigate("LoginPage");
+        }}
       />
     </View>
   );

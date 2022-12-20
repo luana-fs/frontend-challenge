@@ -44,9 +44,9 @@ export default function LoginPage({
           handleLogin({ email: email, password: password }, findUser)
         }
       />
-      <Text>
+      <Text style={style.textToCenter}>
         ou
-        <Link to={{ screen: "SignInPage" }}>Cadastre-se</Link>
+        <Link to={{ screen: "SignInPage" }}> Cadastre-se</Link>
       </Text>
     </View>
   );

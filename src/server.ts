@@ -8,19 +8,9 @@ export const server = () =>
     },
     routes() {
       this.get("/users", (schema) => {
-        return {
-          data: [
-            ...schema.users.all().models,
-            {
-              id: "2",
-              name: "Lígia",
-              email: "ligia@deliver.com",
-              role: "Admin",
-              password: "pipoca",
-            },
-          ],
-        };
+        return schema.users.all();
       });
+
       this.namespace;
       //pegar usuário por id
       this.get("/users/:id", (schema, request) => {
