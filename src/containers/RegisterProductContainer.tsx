@@ -1,20 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { LoadingContext } from "../contexts/LoadingContext";
 import { ProductContext } from "../contexts/ProductContext";
 import { useInput } from "../hooks/useInput";
 import RegisterProduct from "../pages/RegisterProduct";
 import { idGenerator } from "../services/idGenerator";
 
 export function RegisterProductContainer() {
-  const productContext = useContext(ProductContext);
-  const authContext = useContext(AuthContext);
-
-  const {
-    states: { userInfo },
-  } = authContext;
   const {
     handlers: { handleCreateProduct },
-  } = productContext;
+  } = useContext(ProductContext);
+  const {
+    states: { userInfo },
+  } = useContext(AuthContext);
+  const { loading } = useContext(LoadingContext);
 
   const { value: productName, onChange: onChangeProductName } = useInput("");
   const [barCodeScanned, setBarCodeScan] = useState("");
@@ -33,8 +32,7 @@ export function RegisterProductContainer() {
   };
 
   const data = {
-    contexts: { productContext, authContext },
-    states: { productName, category, barCodeScanned },
+    states: { productName, category, barCodeScanned, loading },
     setters: {
       setCategory,
       setCreatedBy,

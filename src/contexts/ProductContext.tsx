@@ -1,15 +1,19 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { set } from "react-native-reanimated";
 import {
   createProduct,
   deleteProduct,
   findProductById,
   getAllProducts,
 } from "../services/Product";
+import { LoadingContext } from "./LoadingContext";
 
 export const ProductContext = createContext({});
 
 export const ProductContextProvider = ({ children }: any) => {
   const [productList, setProductList] = useState([]);
+
+  const { setLoading } = useContext(LoadingContext);
 
   const handleGetAllProducts = async () => {
     const [products] = await getAllProducts();
@@ -29,8 +33,9 @@ export const ProductContextProvider = ({ children }: any) => {
       role: string;
     };
   }) => {
+    setLoading(true);
     const product = await createProduct(productData);
-
+    setLoading(false);
     const newProductList = [...productList, product];
     setProductList(newProductList);
   };

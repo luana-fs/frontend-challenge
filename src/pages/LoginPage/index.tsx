@@ -1,17 +1,16 @@
-import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Link } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Text, useTheme } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Loading } from "../../components/Loading";
 import { Title } from "../../components/Title";
 import { LoadingContext } from "../../contexts/LoadingContext";
-import { navigate } from "../../routes/RootNavigation";
+import { useForm, Controller } from "react-hook-form";
+
 import { findUser } from "../../services/Users";
 import { styles } from "./styles";
-import { LoginPageProps } from "./types";
 
 export default function LoginPage({
   data: {
@@ -25,12 +24,41 @@ export default function LoginPage({
 
   const { loading } = useContext(LoadingContext);
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+    },
+  });
+
   if (loading) return <Loading />;
 
   return (
     <View style={style.container}>
       <Title text={"Login"} />
-      {/* <ActivityIndicator animating={true} color={colors.text} /> */}
+
+      <Controller
+        control={control}
+        rules={{ required: true }}
+        name="email"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input
+            onBlur={onBlur}
+            textLabel="E-mail"
+            placeholder="Digite seu email"
+            value={value}
+            onChange={onChange}
+          />
+        )}
+      />
+
+      <Button
+        buttonText="ok"
+        onPress={handleSubmit((data) => console.log(data))}
+      />
       <Input
         textLabel="E-mail"
         placeholder="Digite seu email"

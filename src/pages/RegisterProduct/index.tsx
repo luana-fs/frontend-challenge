@@ -5,6 +5,7 @@ import { BarCodeScannerComponent } from "../../components/BarCodeScanner";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
+import { Loading } from "../../components/Loading";
 import { Select } from "../../components/Select";
 import { navigate } from "../../routes/RootNavigation";
 
@@ -12,8 +13,7 @@ import { styles } from "./styles";
 
 export default function RegisterProduct({
   data: {
-    contexts: { productContext, authContext },
-    states: { productName, category, barCodeScanned },
+    states: { productName, category, barCodeScanned, loading },
     setters: { setCategory, setCreatedBy, onChangeProductName, setBarCodeScan },
     handlers: { createProduct },
   },
@@ -21,6 +21,8 @@ export default function RegisterProduct({
 }: any) {
   const { colors } = useTheme();
   const style = styles(colors);
+
+  if (loading) <Loading />;
 
   return (
     <>

@@ -12,7 +12,7 @@ const DefaultTheme: Theme = {
     surface: "#fff",
     error: "#B00020",
     text: purple,
-    onSurface: "#121212",
+    onSurface: gray,
     disabled: gray,
     placeholder: purple,
     backdrop: "#121212",

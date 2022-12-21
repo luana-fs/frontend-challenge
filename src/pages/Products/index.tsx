@@ -8,9 +8,11 @@ import {
   useTheme,
   Text,
   Subheading,
+  Button as NativeButton,
 } from "react-native-paper";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
+import { ListIsEmptyContainer } from "../../components/ListIsEmptyContainer";
 import { SearchBar } from "../../components/SearchBar";
 
 import { ProductContext } from "../../contexts/ProductContext";
@@ -27,47 +29,48 @@ export default function Products({
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const renderItemList = productList.length ? (
-    productList
-      .filter(
-        (product) =>
-          searchQuery === "" ||
-          product?.name.toLowerCase().includes(searchQuery)
-      )
-      .map((product) => {
-        return (
-          <Card key={product.id}>
-            <Card.Title
-              title={product.name}
-              subtitle={`Código: ${product.barCode} ${"\n"} Categoria: ${
-                product.category
-              }`}
-            />
+  const renderItemList = productList
+    .filter(
+      (product) =>
+        searchQuery === "" || product?.name.toLowerCase().includes(searchQuery)
+    )
+    .map((product) => {
+      return (
+        <Card key={product.id}>
+          <Card.Title
+            title={product.name}
+            subtitle={`Código: ${product.barCode} ${"\n"} Categoria: ${
+              product.category
+            }`}
+          />
 
-            <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-            <Card.Actions>
-              <PaperButton>Ver detalhes</PaperButton>
-            </Card.Actions>
-          </Card>
-        );
-      })
-  ) : (
-    <>
-      <Subheading>Cadastre o primeiro produto!</Subheading>
-      <Button
-        buttonText={"Cadastrar"}
-        onPress={() => navigate("Cadastrar Produto")}
-      />
-    </>
-  );
+          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+          <Card.Actions>
+            <PaperButton>Ver detalhes</PaperButton>
+          </Card.Actions>
+        </Card>
+      );
+    });
 
   return (
     <>
       <Header title={"Produtos"} goBack />
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ScrollView style={style.container}>
-        <Headline>Produtos</Headline>
-        {renderItemList}
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        {productList.length ? (
+          renderItemList
+        ) : (
+          <>
+            <ListIsEmptyContainer text="Não há produtos cadastrados" />
+            <NativeButton onPress={() => navigate("Cadastrar Produto")}>
+              Cadastrar
+            </NativeButton>
+            {/* <Button
+              buttonText={"Cadastrar"}
+              onPress={() => navigate("Cadastrar Produto")}
+            /> */}
+          </>
+        )}
       </ScrollView>
     </>
   );

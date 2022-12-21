@@ -6,9 +6,10 @@ import {
   Subheading,
   Surface,
   useTheme,
+  Caption,
 } from "react-native-paper";
-import { Title } from "react-native-paper";
 import { Header } from "../../components/Header";
+import { ListIsEmptyContainer } from "../../components/ListIsEmptyContainer";
 import { UsersListContext } from "../../contexts/UsersContext";
 import { styles } from "./styles";
 
@@ -20,8 +21,6 @@ export default function Solicitations() {
     states: { solicitationsList },
     handlers: { handleAcceptSolicitation, handleDeleteSolicitation },
   } = useContext(UsersListContext);
-
-  const context = useContext(UsersListContext);
 
   const renderSolicitationsList = solicitationsList.map((item) => {
     return (
@@ -62,13 +61,16 @@ export default function Solicitations() {
     <>
       <Header title="Solicitações" goBack />
       <View style={style.container}>
-        <Title>Solicitações</Title>
         <Subheading>
           Aceite ou recuse solicitações para usuários se tornarem
           administradores da loja.
         </Subheading>
 
-        {renderSolicitationsList}
+        {solicitationsList.length ? (
+          renderSolicitationsList
+        ) : (
+          <ListIsEmptyContainer text="Não há novas solicitações." />
+        )}
       </View>
     </>
   );
