@@ -5,7 +5,6 @@ import { InputProps } from "./types";
 
 export const Input2 = ({
   password,
-  textLabel,
   placeholder,
   value,
   onChange,

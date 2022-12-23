@@ -27,8 +27,6 @@ const schema = yup
 
 export default function LoginPage({
   data: {
-    states: { email, password },
-    setters: { onChangeEmail, onChangePassword },
     handlers: { handleLogin },
   },
 }: any) {
@@ -48,6 +46,7 @@ export default function LoginPage({
       password: "",
     },
   });
+
   if (loading) return <Loading />;
 
   return (
@@ -83,7 +82,7 @@ export default function LoginPage({
           <Input2
             mode="outlined"
             password
-            label="Digite sua senha"
+            label="Senha"
             onBlur={onBlur}
             textLabel="Senha"
             placeholder="Digite sua senha"

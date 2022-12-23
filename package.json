@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-picker/picker": "2.4.2",
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/material-bottom-tabs": "^6.2.10",
     "@react-navigation/native": "^6.0.13",

@@ -8,9 +8,6 @@ import { createProduct } from "../services/Product";
 import { createUser } from "../services/Users";
 
 export function LoginContainer() {
-  const { value: email, onChange: onChangeEmail } = useInput("");
-  const { value: password, onChange: onChangePassword } = useInput("");
-
   const { handlers } = useContext(AuthContext);
 
   useEffect(() => {
@@ -21,23 +18,9 @@ export function LoginContainer() {
       role: "SuperAdmin",
       password: "bananinha",
     });
-    // createProduct({
-    //   id: "1",
-    //   name: "Camiseta Adeus Tokyo",
-    //   category: "Roupas",
-    //   barCode: "9039908202",
-    //   createdBy: {
-    //     id: "2",
-    //     name: "Lígia",
-    //     email: "ligia@deliver.com",
-    //     role: "Admin",
-    //   },
-    // });
   }, []);
 
   const data = {
-    states: { email, password },
-    setters: { onChangeEmail, onChangePassword },
     handlers: { handleLogin: handlers.handleLogin },
   };
 
