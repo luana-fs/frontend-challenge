@@ -15,31 +15,9 @@ export function RegisterProductContainer() {
   } = useContext(AuthContext);
   const { loading } = useContext(LoadingContext);
 
-  const { value: productName, onChange: onChangeProductName } = useInput("");
-  const [barCodeScanned, setBarCodeScan] = useState("");
-  const [category, setCategory] = useState("");
-  const [createdBy, setCreatedBy] = useState({});
-
-  //FIX IT - Handle é quando o usuário clica. Essa deve se handle, nao a da linha 58
-  const createProduct = () => {
-    handleCreateProduct({
-      id: idGenerator(),
-      name: productName,
-      category: category,
-      barCode: barCodeScanned,
-      createdBy: userInfo,
-    });
-  };
-
   const data = {
-    states: { productName, category, barCodeScanned, loading },
-    setters: {
-      setCategory,
-      setCreatedBy,
-      onChangeProductName,
-      setBarCodeScan,
-    },
-    handlers: { createProduct },
+    states: { loading, userInfo },
+    handlers: { handleCreateProduct },
   };
 
   return <RegisterProduct data={data} />;

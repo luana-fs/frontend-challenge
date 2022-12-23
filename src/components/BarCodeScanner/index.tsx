@@ -5,7 +5,7 @@ import { Button, StyleSheet, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import { Input } from "../Input";
 
-export const BarCodeScannerComponent = ({ setBarCodeScan }) => {
+export const BarCodeScannerComponent = ({ setBarCode }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -23,8 +23,8 @@ export const BarCodeScannerComponent = ({ setBarCodeScan }) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Código ${data} scaneado com sucesso`);
-    setBarCodeScan(data);
+    // alert(`Código ${data} scaneado com sucesso`);
+    setBarCode("barCode", data, { isDirty: true });
     // console.log("Barcode:", type, "Data:", data);
   };
 

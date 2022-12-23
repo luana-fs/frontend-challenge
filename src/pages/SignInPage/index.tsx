@@ -37,14 +37,6 @@ export default function SignInPage({
   const { colors } = useTheme();
   const style = styles(colors);
 
-  const onSubmit = (data) => {
-    const { name, email, password, confirmPassword, select } = data;
-    handleSignIn(
-      { name, email, password, confirmPassword, role: select },
-      findUser
-    );
-    navigate("LoginPage");
-  };
   const {
     control,
     handleSubmit,
@@ -59,6 +51,15 @@ export default function SignInPage({
       select: {},
     },
   });
+
+  const onSubmit = (data) => {
+    const { name, email, password, confirmPassword, select } = data;
+    handleSignIn(
+      { name, email, password, confirmPassword, role: select },
+      findUser
+    );
+    navigate("LoginPage");
+  };
 
   return (
     <View style={style.container}>
