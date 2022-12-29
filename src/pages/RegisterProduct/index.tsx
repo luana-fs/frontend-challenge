@@ -143,7 +143,7 @@ export default function RegisterProduct({
               <Input2
                 mode="outlined"
                 label="Código do produto"
-                value={value}
+                value={useWatch('barCode')}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 keyboardType={"numeric"}
