@@ -4,24 +4,34 @@ import { UsersContext } from "../contexts/UsersContext";
 
 export const getAllUsers = async () => {
   try {
-    const res = await axios.get("/users");
-    // console.log("getAllUsers success", res.data.data);
-    return res.data.users;
+    const res = await axios.get("http://192.168.0.105:3307/users");
+    console.log("getAllUsers success", res.data);
+    return res.data;
   } catch (error) {
     console.log("getAllUsers error", error);
   }
 };
 
+export const login = async (email: string, password: string) => {
+  try {
+    const body = { email, password };
+    const res = await axios.post("http://192.168.0.105:3307/users/login", body);
+    console.log(res.data);
+    return res.data;
+  } catch (error: any) {
+    console.log("Erro 22", error.response.data);
+  }
+};
+
 export const createUser = async (body: {
-  id: string;
   name: string;
   email: string;
-  role: string;
+  role: number;
   password: string;
 }) => {
   try {
     //FIX IT - cade o return dessa função?
-    const res = await axios.post("/users", body);
+    const res = await axios.post("http://192.168.0.105:3307/users", body);
     console.log("CreateUser success", res.data);
   } catch (error) {
     console.log("createUser error", error);
@@ -31,29 +41,25 @@ export const createUser = async (body: {
 export const findUserById = async (id: string) => {
   try {
     // console.log('findUser success', res.data);
-    const res = await axios.get(`/users/${id}`);
-    return res;
+    const res = await axios.get(`http://192.168.0.105:3307/users/${id}`);
+    return res.data;
   } catch (error) {
-    console.log("findUserById error", error);
+    console.log("findUserById error", error.response.message);
   }
 };
 
-export const findUser = async (credentials: {
-  email: string;
-  password: string;
-}) => {
+export const findUserByEmail = async (email: string) => {
   try {
-    let res = await axios.post("/users/getBy", null, {
+    let res = await axios.get("http://192.168.0.105:3307/users/", {
       params: {
-        email: credentials.email,
-        password: credentials.password,
+        email,
       },
     });
-    // console.log("UsersContext request", res.request.response);
+
     console.log("UsersContext request", res.data);
     return res.data;
   } catch (error) {
-    console.log("findUser error", error);
+    console.log("findUser error", error.response);
   }
 };
 

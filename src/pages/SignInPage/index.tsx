@@ -8,7 +8,6 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Title } from "../../components/Title";
 import { navigate } from "../../routes/RootNavigation";
-import { findUser } from "../../services/Users";
 import { styles } from "./styles";
 import { Input2 } from "../../components/Input2";
 import { Select } from "../../components/Select";
@@ -52,12 +51,19 @@ export default function SignInPage({
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     const { name, email, password, confirmPassword, select } = data;
-    handleSignIn(
-      { name, email, password, confirmPassword, role: select },
-      findUser
-    );
+    console.log("57");
+    handleSignIn({
+      name,
+      email,
+      password,
+      confirmPassword,
+      role: select,
+    });
+    console.log("65");
+
     navigate("LoginPage");
   };
 
@@ -173,8 +179,8 @@ export default function SignInPage({
               enabled={false}
               style={{ color: colors.placeholder }}
             />
-            <Picker.Item label="Normal" value="User" />
-            <Picker.Item label="Administrador" value="Admin" />
+            <Picker.Item label="Normal" value={2} />
+            <Picker.Item label="Administrador" value={3} />
           </Picker>
         )}
       />
