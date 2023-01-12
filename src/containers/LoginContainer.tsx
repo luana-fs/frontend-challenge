@@ -5,19 +5,20 @@ import { UsersContext, UsersListContext } from "../contexts/UsersContext";
 import { useInput } from "../hooks/useInput";
 import LoginPage from "../pages/LoginPage";
 import { createProduct } from "../services/Product";
-import { createUser } from "../services/Users";
+import { createUser, findUserByEmail } from "../services/Users";
 
 export function LoginContainer() {
   const { handlers } = useContext(AuthContext);
 
   useEffect(() => {
-    createUser({
-      id: "1",
-      name: "Luana Farias",
-      email: "luana@deliver.com",
-      role: "SuperAdmin",
-      password: "bananinha",
-    });
+    // createUser({
+    //   id: "1",
+    //   name: "Luana Farias",
+    //   email: "luana@deliver.com",
+    //   role: "SuperAdmin",
+    //   password: "bananinha",
+    // });
+    // findUserByEmail("florr@email.com");
   }, []);
 
   const data = {

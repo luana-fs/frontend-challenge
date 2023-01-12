@@ -1,5 +1,5 @@
 import { Link } from "@react-navigation/native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import { Button } from "../../components/Button";
@@ -14,6 +14,7 @@ import * as yup from "yup";
 import { findUser } from "../../services/Users";
 import { styles } from "./styles";
 import { Input2 } from "../../components/Input2";
+import axios from "axios";
 
 const schema = yup
   .object({

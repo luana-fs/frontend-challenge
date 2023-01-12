@@ -7,7 +7,10 @@ import LoginPage from "../pages/LoginPage";
 import SignInPage from "../pages/SignInPage";
 
 export function SignInContainer() {
-  const { handlers: handleSignIn } = useContext(AuthContext);
+  const {
+    handlers: { handleLogin, handleLogout, handleSignIn },
+    states: { token, userInfo },
+  } = useContext(AuthContext);
 
   const data = {
     //FIX IT destruturar handlers na linha 17
