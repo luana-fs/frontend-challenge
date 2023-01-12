@@ -26,28 +26,24 @@ export const Auth = ({ children }: any) => {
     handlers: { handleSolicitations, handleGetAllUsers, handleFindUser },
   } = useContext(UsersListContext);
 
-  const handleSignIn = (userData: any) => {
-    console.log("37");
-
+  const handleSignIn = async (userData: any) => {
     if (userData.password !== userData.confirmPassword) {
-      console.log("As senhas não correspondem");
     } else {
-      const userAlreadyExists = findUserByEmail(userData.email);
-      console.log("41");
+      const [userAlreadyExists] = await findUserByEmail(userData.email);
 
       if (!userAlreadyExists) {
         const user = {
           name: userData.name,
           email: userData.email,
-          role: userData.role,
           password: userData.password,
+          confirmPassword: userData.confirmPassword,
+          role: userData.role,
         };
 
         if (user.role === 2) {
           handleSolicitations(user);
           return;
         } else {
-          console.log("54");
           createUser(user);
           handleGetAllUsers();
           RootNavigation.navigate("LoginPage");

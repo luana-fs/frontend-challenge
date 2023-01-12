@@ -51,7 +51,7 @@ export default function SignInPage({
     },
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     console.log(data);
     const { name, email, password, confirmPassword, select } = data;
     console.log("57");
@@ -179,8 +179,8 @@ export default function SignInPage({
               enabled={false}
               style={{ color: colors.placeholder }}
             />
-            <Picker.Item label="Normal" value={2} />
-            <Picker.Item label="Administrador" value={3} />
+            <Picker.Item label="Normal" value={3} />
+            <Picker.Item label="Administrador" value={2} />
           </Picker>
         )}
       />

@@ -13,7 +13,7 @@ import { StatusBar } from "./src/components/StatusBar/StatusBar";
 import LoginPage from "./src/pages/LoginPage";
 import { ThemeContext } from "./src/contexts/ThemeContext";
 import axios from "axios";
-import { getAllUsers, login } from "./src/services/Users";
+import { findUserByEmail, getAllUsers, login } from "./src/services/Users";
 
 // server();
 
@@ -29,6 +29,7 @@ export default function App(props: any) {
     //   password: "bananinha",
     // });
     // login("johndoe3@test.com", "123456");
+    // findUserByEmail("johndoe@deliver.com");
   }, []);
 
   return (

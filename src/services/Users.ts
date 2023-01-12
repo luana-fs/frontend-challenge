@@ -4,7 +4,7 @@ import { UsersContext } from "../contexts/UsersContext";
 
 export const getAllUsers = async () => {
   try {
-    const res = await axios.get("http://192.168.0.105:3307/users");
+    const res = await axios.get("http://192.168.3.48:3307/users");
     console.log("getAllUsers success", res.data);
     return res.data;
   } catch (error) {
@@ -15,7 +15,7 @@ export const getAllUsers = async () => {
 export const login = async (email: string, password: string) => {
   try {
     const body = { email, password };
-    const res = await axios.post("http://192.168.0.105:3307/users/login", body);
+    const res = await axios.post("http://192.168.3.48:3307/users/login", body);
     console.log(res.data);
     return res.data;
   } catch (error: any) {
@@ -31,8 +31,9 @@ export const createUser = async (body: {
 }) => {
   try {
     //FIX IT - cade o return dessa função?
-    const res = await axios.post("http://192.168.0.105:3307/users", body);
+    const res = await axios.post("http://192.168.3.48:3307/users", body);
     console.log("CreateUser success", res.data);
+    return res.data;
   } catch (error) {
     console.log("createUser error", error);
   }
@@ -41,7 +42,7 @@ export const createUser = async (body: {
 export const findUserById = async (id: string) => {
   try {
     // console.log('findUser success', res.data);
-    const res = await axios.get(`http://192.168.0.105:3307/users/${id}`);
+    const res = await axios.get(`http://192.168.3.48:3307/users/${id}`);
     return res.data;
   } catch (error) {
     console.log("findUserById error", error.response.message);
@@ -50,7 +51,7 @@ export const findUserById = async (id: string) => {
 
 export const findUserByEmail = async (email: string) => {
   try {
-    let res = await axios.get("http://192.168.0.105:3307/users/", {
+    const res = await axios.get("http://192.168.3.48:3307/users", {
       params: {
         email,
       },
@@ -58,8 +59,8 @@ export const findUserByEmail = async (email: string) => {
 
     console.log("UsersContext request", res.data);
     return res.data;
-  } catch (error) {
-    console.log("findUser error", error.response);
+  } catch (error: any) {
+    console.log("findUser error", error);
   }
 };
 
@@ -73,14 +74,14 @@ export const editUser = async (
     role: string;
   }
 ) => {
-  const res = await axios.put(`/users/${id}`, body);
+  const res = await axios.put(`http://192.168.3.48/users/${id}`, body);
   // console.log("usuario editado", res.data);
   return res.data;
 };
 
 export const deleteUser = async (id: string) => {
   try {
-    const res = await axios.delete(`/users/${id}`);
+    const res = await axios.delete(`http://192.168.3.48/users/${id}`);
     console.log("Delete user success", res);
     return res;
   } catch (error) {
