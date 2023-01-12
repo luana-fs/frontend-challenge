@@ -1,23 +1,33 @@
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useContext, useState } from "react";
 import { AppRegistry } from "react-native";
-import {
-  DarkTheme,
-  Provider as PaperProvider,
-  useTheme,
-} from "react-native-paper";
-import DefaultTheme from "./src/styles/theme/DefaultTheme";
-import LoginPage from "./src/pages/LoginPage";
+import { Provider as PaperProvider } from "react-native-paper";
 
-export const useAppTheme = () => useTheme();
-export default function App() {
-  const [theme, setTheme] = useState(DarkTheme);
+import { Routes } from "./src/routes";
+
+import DefaultTheme from "./src/styles/theme/DefaultTheme";
+import DarkTheme from "./src/styles/theme/DarkTheme";
+
+import { AllProviders } from "./src/contexts";
+import { StatusBar } from "./src/components/StatusBar/StatusBar";
+import { server } from "./src/server";
+import LoginPage from "./src/pages/LoginPage";
+import { ThemeContext } from "./src/contexts/ThemeContext";
+
+server();
+
+export default function App(props: any) {
+  const contexto = useContext(ThemeContext);
   return (
     <>
-      <PaperProvider theme={theme}>
-        <StatusBar style="auto" />
-        <LoginPage />
-      </PaperProvider>
+      <AllProviders>
+        {/* <PaperProvider theme={theme}> */}
+        {/* <StatusBar
+            style={theme.dark ? ("light" as string) : ("dark" as string)}
+          /> */}
+
+        <Routes />
+        {/* </PaperProvider> */}
+      </AllProviders>
     </>
   );
 }

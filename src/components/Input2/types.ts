@@ -6,4 +6,5 @@ export type InputProps = {
   value: string;
   onChange?: (arg0: {}) => void;
   flat?: boolean;
+  style?: {};
 };

@@ -8,9 +8,4 @@ export const styles = (props: any) =>
       backgroundColor: props.background,
       padding: 20,
     },
-    textToCenter: {
-      fontSize: 14,
-      marginTop: 10,
-      alignSelf: "center",
-    },
   });

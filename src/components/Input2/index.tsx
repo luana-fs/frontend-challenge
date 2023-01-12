@@ -3,9 +3,8 @@ import { TextInput } from "react-native-paper";
 import { styles } from "./styles";
 import { InputProps } from "./types";
 
-export const Input = ({
+export const Input2 = ({
   password,
-  textLabel,
   placeholder,
   value,
   onChange,
@@ -18,12 +17,7 @@ export const Input = ({
     <TextInput
       //aqui eu apliquei o principio de liskov
       {...rest}
-      value={value}
       secureTextEntry={isPasswordVisible ? false : password}
-      mode={flat ? "flat" : "outlined"}
-      label={textLabel ? textLabel : "Senha"}
-      placeholder={placeholder ? placeholder : textLabel}
-      onChange={({ nativeEvent }) => onChange(nativeEvent)}
       style={styles.inputStyles}
       right={
         password ? (
