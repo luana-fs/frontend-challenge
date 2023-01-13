@@ -13,6 +13,8 @@ export const ProductContext = createContext({});
 export const ProductContextProvider = ({ children }: any) => {
   const [productList, setProductList] = useState([]);
 
+  console.log("listadeprodu", productList);
+
   const { setLoading } = useContext(LoadingContext);
 
   useEffect(() => {

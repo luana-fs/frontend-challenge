@@ -38,9 +38,9 @@ export default function Products({
       return (
         <Card>
           <Card.Title
-            key={product.id}
+            key={product.id_product}
             title={product.name}
-            subtitle={`Código: ${product.barCode} ${"\n"} Categoria: ${
+            subtitle={`Código: ${product.bar_code} ${"\n"} Categoria: ${
               product.category
             }`}
           />
