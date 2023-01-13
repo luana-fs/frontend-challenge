@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllProducts = async () => {
   try {
     const res = await axios.get("http://192.168.3.48:3307/products");
-    console.log("getallproducts success", res.data);
+    // console.log("getallproducts success", res.data);
     return res.data;
   } catch (error) {
     console.log("get all products error", error);
@@ -11,21 +11,19 @@ export const getAllProducts = async () => {
 };
 
 export const createProduct = async (body: {
-  id: string;
   name: string;
-  category: string;
+  category: number;
   barCode: string;
-  createdBy: {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-  };
+  createdBy: number;
 }) => {
   try {
-    const res = await axios.post("http://192.168.3.48:3307/products", body);
-    // console.log("CreateUser success", res.data.products);
-    return res.data.products;
+    const res = await axios.post("http://192.168.3.48:3307/products", body, {
+      headers: {
+        auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuYUBlbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTY3MzU3MzE1OH0.D6iPNSW0uARW_VY_MNRlU8gUqjaWcAj64mqyM-8XqTQ",
+      },
+    });
+    console.log("Createprod success", res.data);
+    return res.data;
   } catch (error) {
     console.log("createUser error", error);
   }
@@ -33,9 +31,13 @@ export const createProduct = async (body: {
 
 export const findProductById = async (id: string) => {
   try {
-    const res = await axios.get(`/products/${id}`);
+    const res = await axios.get(`http://192.168.3.48:3307/products/${id}`, {
+      headers: {
+        auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuYUBlbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTY3MzU3MzE1OH0.D6iPNSW0uARW_VY_MNRlU8gUqjaWcAj64mqyM-8XqTQ",
+      },
+    });
     // console.log("findProducts success", res.data);
-    return res;
+    return res.data;
   } catch (error) {
     console.log("findProductsById error", error);
   }

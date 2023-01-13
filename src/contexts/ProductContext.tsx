@@ -27,16 +27,10 @@ export const ProductContextProvider = ({ children }: any) => {
   };
 
   const handleCreateProduct = async (productData: {
-    id: string;
     name: string;
-    category: string;
+    category: number;
     barCode: string;
-    createdBy: {
-      id: string;
-      name: string;
-      email: string;
-      role: string;
-    };
+    createdBy: number;
   }) => {
     setLoading(true);
     const product = await createProduct(productData);
