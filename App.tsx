@@ -14,6 +14,7 @@ import LoginPage from "./src/pages/LoginPage";
 import { ThemeContext } from "./src/contexts/ThemeContext";
 import axios from "axios";
 import { findUserByEmail, getAllUsers, login } from "./src/services/Users";
+import { getAllProducts } from "./src/services/Product";
 
 // server();
 
@@ -30,6 +31,7 @@ export default function App(props: any) {
     // });
     // login("johndoe3@test.com", "123456");
     // findUserByEmail("johndoe@deliver.com");
+    // getAllProducts();
   }, []);
 
   return (

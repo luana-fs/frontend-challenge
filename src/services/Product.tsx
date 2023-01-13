@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const getAllProducts = async () => {
   try {
-    const res = await axios.get("/products");
-    console.log("getallproducts success", res.data.products);
-    return res.data.products;
+    const res = await axios.get("http://192.168.3.48:3307/products");
+    console.log("getallproducts success", res.data);
+    return res.data;
   } catch (error) {
     console.log("get all products error", error);
   }
