@@ -6,6 +6,7 @@ import {
   createUser,
   findUserByEmail,
   findUserById,
+  getAllUsers,
   login,
 } from "../services/Users";
 import { idGenerator } from "../services/idGenerator";
@@ -61,6 +62,9 @@ export const Auth = ({ children }: any) => {
     // setLoading(true);
 
     const { token } = await login(credentials.email, credentials.password);
+
+    const [user] = await findUserByEmail(credentials.email);
+    setUserInfo(user);
 
     if (token) {
       setToken(token);

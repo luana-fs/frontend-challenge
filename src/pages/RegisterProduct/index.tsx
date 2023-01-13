@@ -35,13 +35,11 @@ export default function RegisterProduct({
     states: { loading, userInfo },
     handlers: { handleCreateProduct },
   },
-  ...rest
 }: any) {
   const { colors } = useTheme();
   const style = styles(colors);
 
   const [scan, setScan] = useState(false);
-
   const [code, setCode] = useState("");
 
   const {
@@ -49,7 +47,7 @@ export default function RegisterProduct({
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, isDirty, dirtyFields },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -59,21 +57,16 @@ export default function RegisterProduct({
     },
   });
 
-  console.log(isDirty, dirtyFields);
-
-  const barCode = watch("barCode");
-
   const onSubmit = (data) => {
     const { productName, category, barCode } = data;
-    console.log(data);
-    // handleCreateProduct({
-    //   id: idGenerator(),
-    //   name: productName,
-    //   category: category,
-    //   barCode: barCode,
-    //   createdBy: userInfo,
-    // });
-    // navigate("Products");
+    const product = {
+      name: productName,
+      category: Number(category),
+      barCode,
+      createdBy: userInfo.id_user,
+    };
+    handleCreateProduct(product);
+    navigate("Produtos");
   };
 
   if (loading) <Loading />;
@@ -125,11 +118,12 @@ export default function RegisterProduct({
                 enabled={false}
                 style={{ color: colors.placeholder }}
               />
-              <Picker.Item label="Calçados" value="calçados" />
-              <Picker.Item label="Roupas" value="roupas" />
+              <Picker.Item label="Eletrônicos" value={1} />
+              <Picker.Item label="Roupas" value={2} />
             </Picker>
           )}
         />
+
         {errors.category ? (
           <Text style={{ color: "red" }}>{errors.category?.message}</Text>
         ) : null}
@@ -143,7 +137,7 @@ export default function RegisterProduct({
               <Input2
                 mode="outlined"
                 label="Código do produto"
-                value={useWatch('barCode')}
+                value={value}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 keyboardType={"numeric"}

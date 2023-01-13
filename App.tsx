@@ -14,6 +14,11 @@ import LoginPage from "./src/pages/LoginPage";
 import { ThemeContext } from "./src/contexts/ThemeContext";
 import axios from "axios";
 import { findUserByEmail, getAllUsers, login } from "./src/services/Users";
+import {
+  createProduct,
+  findProductById,
+  getAllProducts,
+} from "./src/services/Product";
 
 // server();
 
@@ -30,6 +35,14 @@ export default function App(props: any) {
     // });
     // login("johndoe3@test.com", "123456");
     // findUserByEmail("johndoe@deliver.com");
+    // getAllProducts();
+    // findProductById("7");
+    // createProduct({
+    //   name: "Meias",
+    //   barCode: "908029302",
+    //   createdBy: 5,
+    //   category: 1,
+    // });
   }, []);
 
   return (

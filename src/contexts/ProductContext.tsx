@@ -13,25 +13,26 @@ export const ProductContext = createContext({});
 export const ProductContextProvider = ({ children }: any) => {
   const [productList, setProductList] = useState([]);
 
+  console.log("listadeprodu", productList);
+
   const { setLoading } = useContext(LoadingContext);
 
+  useEffect(() => {
+    handleGetAllProducts();
+  }, []);
+
   const handleGetAllProducts = async () => {
-    const [products] = await getAllProducts();
+    const products = await getAllProducts();
+    console.log("LISTA", productList);
     //se products vier undefined, não salva o undefined dentro do array de produtos
-    products && setProductList(newProductList);
+    products && setProductList(products);
   };
 
   const handleCreateProduct = async (productData: {
-    id: string;
     name: string;
-    category: string;
+    category: number;
     barCode: string;
-    createdBy: {
-      id: string;
-      name: string;
-      email: string;
-      role: string;
-    };
+    createdBy: number;
   }) => {
     setLoading(true);
     const product = await createProduct(productData);
