@@ -15,10 +15,15 @@ export const ProductContextProvider = ({ children }: any) => {
 
   const { setLoading } = useContext(LoadingContext);
 
+  useEffect(() => {
+    handleGetAllProducts();
+  }, []);
+
   const handleGetAllProducts = async () => {
-    const [products] = await getAllProducts();
+    const products = await getAllProducts();
+    console.log("LISTA", productList);
     //se products vier undefined, não salva o undefined dentro do array de produtos
-    products && setProductList(newProductList);
+    products && setProductList(products);
   };
 
   const handleCreateProduct = async (productData: {

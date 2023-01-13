@@ -23,7 +23,7 @@ export const createProduct = async (body: {
   };
 }) => {
   try {
-    const res = await axios.post("/products", body);
+    const res = await axios.post("http://192.168.3.48:3307/products", body);
     // console.log("CreateUser success", res.data.products);
     return res.data.products;
   } catch (error) {

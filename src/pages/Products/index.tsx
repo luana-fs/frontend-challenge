@@ -36,8 +36,9 @@ export default function Products({
     )
     .map((product) => {
       return (
-        <Card key={product.id}>
+        <Card>
           <Card.Title
+            key={product.id}
             title={product.name}
             subtitle={`Código: ${product.barCode} ${"\n"} Categoria: ${
               product.category
