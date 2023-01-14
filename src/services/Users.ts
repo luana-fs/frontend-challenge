@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect } from "react";
+import { api } from "../api";
 import { UsersContext } from "../contexts/UsersContext";
 
 export const getAllUsers = async () => {
   try {
-    const res = await axios.get("http://192.168.3.48:3307/users");
+    const res = await api.get("/users");
     console.log("getAllUsers success", res.data);
     return res.data;
   } catch (error) {
@@ -15,7 +16,7 @@ export const getAllUsers = async () => {
 export const login = async (email: string, password: string) => {
   try {
     const body = { email, password };
-    const res = await axios.post("http://192.168.3.48:3307/users/login", body);
+    const res = await api.post("/users/login", body);
     console.log(res.data);
     return res.data;
   } catch (error: any) {
@@ -31,7 +32,7 @@ export const createUser = async (body: {
 }) => {
   try {
     //FIX IT - cade o return dessa função?
-    const res = await axios.post("http://192.168.3.48:3307/users", body);
+    const res = await api.post("/users", body);
     console.log("CreateUser success", res.data);
     return res.data;
   } catch (error) {
@@ -42,16 +43,16 @@ export const createUser = async (body: {
 export const findUserById = async (id: string) => {
   try {
     // console.log('findUser success', res.data);
-    const res = await axios.get(`http://192.168.3.48:3307/users/${id}`);
+    const res = await api.get(`/users/${id}`);
     return res.data;
   } catch (error) {
-    console.log("findUserById error", error.response.message);
+    console.log("findUserById error", error.response);
   }
 };
 
 export const findUserByEmail = async (email: string) => {
   try {
-    const res = await axios.get("http://192.168.3.48:3307/users", {
+    const res = await api.get("/users", {
       params: {
         email,
       },
@@ -74,14 +75,14 @@ export const editUser = async (
     role: string;
   }
 ) => {
-  const res = await axios.put(`http://192.168.3.48/users/${id}`, body);
+  const res = await api.put(`/users/${id}`, body);
   // console.log("usuario editado", res.data);
   return res.data;
 };
 
 export const deleteUser = async (id: string) => {
   try {
-    const res = await axios.delete(`http://192.168.3.48/users/${id}`);
+    const res = await api.delete(`http://192.168.3.48/users/${id}`);
     console.log("Delete user success", res);
     return res;
   } catch (error) {
