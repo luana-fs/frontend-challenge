@@ -13,8 +13,6 @@ export const ProductContext = createContext({});
 export const ProductContextProvider = ({ children }: any) => {
   const [productList, setProductList] = useState([]);
 
-  console.log("listadeprodu", productList);
-
   const { setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -23,7 +21,6 @@ export const ProductContextProvider = ({ children }: any) => {
 
   const handleGetAllProducts = async () => {
     const products = await getAllProducts();
-    console.log("LISTA", productList);
     //se products vier undefined, não salva o undefined dentro do array de produtos
     products && setProductList(products);
   };
@@ -39,6 +36,7 @@ export const ProductContextProvider = ({ children }: any) => {
     setLoading(false);
     const newProductList = [...productList, product];
     setProductList(newProductList);
+    handleGetAllProducts();
   };
 
   const handleDeleteProduct = async (id: string) => {

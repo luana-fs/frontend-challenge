@@ -27,6 +27,8 @@ export const SideMenu = () => {
   const { colors } = useTheme();
   // const style = styles(colors);
 
+  console.log(userInfo);
+
   return (
     <Drawer.Navigator
       useLegacyImplementation
@@ -50,7 +52,7 @@ export const SideMenu = () => {
         }}
       />
 
-      {userInfo.role === "SuperAdmin" ? (
+      {userInfo.id_role === 1 ? (
         <Drawer.Screen
           name="Solicitações"
           component={Solicitations}
@@ -68,7 +70,7 @@ export const SideMenu = () => {
         />
       ) : null}
 
-      {userInfo.role === "SuperAdmin" || "Admin" ? (
+      {userInfo.id_role === 1 || 2 ? (
         <Drawer.Screen
           name="Cadastrar Produto"
           component={RegisterProductContainer}
@@ -86,7 +88,7 @@ export const SideMenu = () => {
         />
       ) : null}
 
-      {userInfo.role === "SuperAdmin" ? (
+      {userInfo.id_role === 1 ? (
         <Drawer.Screen
           name="Gerenciar contas"
           component={ManageAccountsContainer}

@@ -30,18 +30,18 @@ export default function Products({
   const style = styles(colors);
 
   const renderItemList = productList
-    .filter(
+    ?.filter(
       (product) =>
-        searchQuery === "" || product?.name.toLowerCase().includes(searchQuery)
+        searchQuery === "" || product?.name?.toLowerCase().includes(searchQuery)
     )
     .map((product) => {
       return (
         <Card>
           <Card.Title
-            key={product.id_product}
-            title={product.name}
-            subtitle={`Código: ${product.bar_code} ${"\n"} Categoria: ${
-              product.category
+            key={product?.id_product}
+            title={product?.name}
+            subtitle={`Código: ${product?.bar_code} ${"\n"} Categoria: ${
+              product?.category
             }`}
           />
 
