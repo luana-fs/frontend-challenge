@@ -11,6 +11,5 @@ api.interceptors.request.use(async (config) => {
   if (token) {
     api.defaults.headers.auth = `${token}`;
   }
-  console.log(config);
   return config;
 });

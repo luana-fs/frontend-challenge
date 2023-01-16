@@ -38,7 +38,6 @@ export const UsersContext = ({ children }: any) => {
 
   const handleGetAllUsers = async () => {
     const usersList = await getAllUsers();
-    console.log("usersList request", usersList);
     setUsersList(usersList);
   };
 
@@ -58,7 +57,6 @@ export const UsersContext = ({ children }: any) => {
     password: string;
   }) => {
     const user = await findUser(params);
-    console.log("q", user);
     setUser(user);
   };
 

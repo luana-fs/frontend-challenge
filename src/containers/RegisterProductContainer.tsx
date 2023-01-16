@@ -14,7 +14,7 @@ export function RegisterProductContainer() {
     states: { userInfo },
   } = useContext(AuthContext);
   const { loading } = useContext(LoadingContext);
-  console.log(userInfo);
+
   const data = {
     states: { loading, userInfo },
     handlers: { handleCreateProduct },

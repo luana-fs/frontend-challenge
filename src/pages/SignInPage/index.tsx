@@ -52,9 +52,7 @@ export default function SignInPage({
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     const { name, email, password, confirmPassword, select } = data;
-    console.log("57");
     handleSignIn({
       name,
       email,
@@ -62,7 +60,6 @@ export default function SignInPage({
       confirmPassword,
       role: select,
     });
-    console.log("65");
 
     navigate("LoginPage");
   };

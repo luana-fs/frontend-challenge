@@ -66,17 +66,15 @@ export const findUserByEmail = async (email: string) => {
 };
 
 export const editUser = async (
-  id: string,
+  id: number,
   body: {
     email: string;
-    id: string;
     name: string;
-    password: string;
-    role: string;
+    role: number;
   }
 ) => {
   const res = await api.put(`/users/${id}`, body);
-  // console.log("usuario editado", res.data);
+  console.log("usuario editado", res.data);
   return res.data;
 };
 

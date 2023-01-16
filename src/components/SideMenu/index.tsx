@@ -27,8 +27,6 @@ export const SideMenu = () => {
   const { colors } = useTheme();
   // const style = styles(colors);
 
-  console.log(userInfo);
-
   return (
     <Drawer.Navigator
       useLegacyImplementation
